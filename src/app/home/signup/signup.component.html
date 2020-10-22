@@ -1,32 +1,55 @@
 <div class="bg-primary template">
   <ac-container>
-    <div class="card" style="margin: 0 auto; width: 25rem;">
+    <div class="card" style="margin: 10% auto 0 auto; width: 40rem;">
       <div class="card-body">
         <h3 class="text-center">Faça seu cadastro gratis</h3>
       </div>
       <div class="card-body">
         <form [formGroup]="registerForm">
           <div class="form-group">
-            <label for="nomeCompleto">Nome</label>
+            <ac-label-required name="nomeCompleto" label="Nome"></ac-label-required>
             <input formControlName="name" type="text" class="form-control" id="nomeCompleto"
               placeholder="Nome completo">
+            <ac-input-message *ngIf="registerForm.get('name').errors?.required" message="Obrigatório *">
+            </ac-input-message>
+            <ac-input-message *ngIf="registerForm.get('name').errors?.maxlength"
+                message="Deve conter no máximo 255 caracteres"></ac-input-message>
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
+            <ac-label-required name="email" label="Email"></ac-label-required>
             <input formControlName="email" type="email" class="form-control" id="email" placeholder="Email">
+            <ac-input-message *ngIf="registerForm.get('email').errors?.required" message="Obrigatório *">
+            </ac-input-message>
+            <ac-input-message *ngIf="registerForm.get('email').errors?.email" message="Email inválido">
+            </ac-input-message>
           </div>
           <div class="form-group">
-            <label for="username">Email</label>
-            <input formControlName="username" type="text" class="form-control" id="username" placeholder="Nome de usuário">
+            <ac-label-required name="username" label="Usuário"></ac-label-required>
+            <input formControlName="username" type="text" class="form-control" id="username"
+              placeholder="Nome de usuário">
+            <ac-input-message *ngIf="registerForm.get('username').errors?.required" message="Obrigatório *">
+            </ac-input-message>
+            <ac-input-message *ngIf="registerForm.get('username').errors?.lowerCase" message="Obrigatório *">
+            </ac-input-message>
           </div>
           <div class="form-group">
-            <label for="password">Senha</label>
+            <ac-label-required name="password" label="Senha"></ac-label-required>
             <input formControlName="password" type="password" class="form-control" id="password" placeholder="Senha">
+            <ac-input-message *ngIf="registerForm.get('password').errors?.required" message="Obrigatório *">
+            </ac-input-message>
+            <ac-input-message *ngIf="registerForm.get('password').errors?.minlength"
+              message="Deve conter no mínimo 7 caracteres"></ac-input-message>
+            <ac-input-message *ngIf="registerForm.get('password').errors?.maxlength"
+              message="Deve conter no máximo 16 caracteres"></ac-input-message>
           </div>
           <div class="form-group">
-            <label for="password">Confirmar senha</label>
-            <input formControlName="password" type="password" class="form-control" id="password"
+            <ac-label-required name="confirm-password" label="Confirmar senha"></ac-label-required>
+            <input formControlName="confirm-password" type="password" class="form-control" id="confirm-password"
               placeholder="Digite novamente a senha">
+            <ac-input-message *ngIf="registerForm.get('confirm-password').errors?.required" message="Obrigatório *">
+            </ac-input-message>
+            <ac-input-message *ngIf="registerForm.get('confirm-password').errors?.passwordConfirm" message="Senhas não são identicas">
+            </ac-input-message>
           </div>
           <button [disabled]="registerForm.invalid" class="btn btn-primary">Cadastrar</button>
         </form>
@@ -34,15 +57,3 @@
     </div>
   </ac-container>
 </div>
-
-
-
-<!-- 
-
-    Nome completo
-    email
-    username
-    password
-    password
-
--->

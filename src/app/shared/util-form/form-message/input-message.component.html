@@ -1,0 +1,5 @@
+<small class="text-danger" *ngIf="!fail?.length; else MessageTemplate">{{message}}</small>
+
+<ng-template #MessageTemplate>
+    <small class="text-success">{{message}}</small>
+</ng-template>
