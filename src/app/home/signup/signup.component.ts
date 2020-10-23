@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { confirmPasswordValidator } from 'src/app/shared/validators/confirm-password.validator';
 import { lowerCaseValidator } from 'src/app/shared/validators/lower-case.validator';
+import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
 
 @Component({
     selector: 'ac-signup',
@@ -13,7 +13,8 @@ export class SignupComponent implements OnInit{
     registerForm: FormGroup;
     
     constructor(
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private userNotTakenValidator: UserNotTakenValidatorService
         ){}
 
     ngOnInit(): void {
@@ -22,7 +23,7 @@ export class SignupComponent implements OnInit{
                 '', 
                 [
                     Validators.required, 
-                    Validators.max(255)
+                    Validators.maxLength(255)
                 ]
             ],
             'email': [
@@ -30,28 +31,53 @@ export class SignupComponent implements OnInit{
                 [ 
                     Validators.required, 
                     Validators.email
-                ]
+                ],
+                this.userNotTakenValidator.checkEmailTaken()
             ],
             'username': [
                 '', 
                 [
                     Validators.required, 
                     lowerCaseValidator
-                ]
+                ],
+                this.userNotTakenValidator.checkUserNameTaken()
+                
             ], //Usuário não pode começar com número
             'password': [
                 '', 
                 [
                     Validators.required, 
-                    Validators.min(7), 
-                    Validators.max(16)]
+                    Validators.minLength(7), 
+                    Validators.maxLength(16)]
                 ], //letras, números e caracteres especiais
-            'confirm-password': [
+            'confirmPassword': [
                 '', [
                     Validators.required,
-                    confirmPasswordValidator
-                ]
+                ],
+                
             ]
         });
     }
+
+    //usar pristine no template
+    get name(){
+        return this.registerForm.get('name');
+    }
+
+    get email(){
+        return this.registerForm.get('email');
+    }
+
+    get username(){
+        return this.registerForm.get('username');
+    }
+
+    get password(){
+        return this.registerForm.get('password').value;
+    }
+
+    get confirmPassword(){
+        return this.registerForm.get('confirmPassword');
+    }
+
 }
