@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { NewUser } from 'src/app/core/user/new-user';
+import { emailValidator } from 'src/app/shared/validators/email.validator';
 import { lowerCaseValidator } from 'src/app/shared/validators/lower-case.validator';
+import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
+import { SignUpService } from './signup.service';
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
 
 @Component({
@@ -14,7 +20,10 @@ export class SignupComponent implements OnInit{
     
     constructor(
         private formBuilder: FormBuilder,
-        private userNotTakenValidator: UserNotTakenValidatorService
+        private signupService: SignUpService,
+        private userNotTakenValidator: UserNotTakenValidatorService,
+        private router: Router
+
         ){}
 
     ngOnInit(): void {
@@ -26,11 +35,20 @@ export class SignupComponent implements OnInit{
                     Validators.maxLength(255)
                 ]
             ],
+            'cpf_cnpj': [
+                '', 
+                [
+                    Validators.required,
+                    Validators.maxLength(14),
+                    Validacoes.ValidaCpf
+                ]
+            ],
             'email': [
                 '',
                 [ 
                     Validators.required, 
-                    Validators.email
+                   
+                    emailValidator
                 ],
                 this.userNotTakenValidator.checkEmailTaken()
             ],
@@ -48,8 +66,9 @@ export class SignupComponent implements OnInit{
                 [
                     Validators.required, 
                     Validators.minLength(7), 
-                    Validators.maxLength(16)]
-                ], //letras, números e caracteres especiais
+                    Validators.maxLength(16)
+                ]
+            ], //letras, números e caracteres especiais
             'confirmPassword': [
                 '', [
                     Validators.required,
@@ -59,10 +78,27 @@ export class SignupComponent implements OnInit{
         });
     }
 
+    //Submte o formulário
+    signup(){
+        const newUser = this.registerForm.getRawValue() as NewUser;
+        console.log(newUser);
+        
+        this.signupService.signup(newUser).subscribe(
+            () => this.router.navigate(['']),
+            err => console.log(err)
+            
+        )
+        
+    }
+
     //usar pristine no template
     get name(){
         return this.registerForm.get('name');
     }
+
+    get cpf_cnpj(){
+        return this.registerForm.get('cpf_cnpj');
+    } 
 
     get email(){
         return this.registerForm.get('email');
@@ -73,7 +109,7 @@ export class SignupComponent implements OnInit{
     }
 
     get password(){
-        return this.registerForm.get('password').value;
+        return this.registerForm.get('password');
     }
 
     get confirmPassword(){
