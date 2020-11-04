@@ -20,14 +20,12 @@
       <li class="nav-item mr-1">
         <a class="nav-link" href="#">Contato</a>
       </li>
-      <li class="nav-item mr-1">
-        <a class="nav-link">
-          <a [routerLink]="['']">Log-in</a> ou <a [routerLink]="['register']">Registre-se</a>
-        </a>
-      </li>
     </ul>
-    <span class="navbar-text">
+    <span hidden class="navbar-text">
       UserName
+    </span>
+    <span class="navbar-text">
+      <a [routerLink]="['']">Log-in</a> ou <a [routerLink]="['register']">Registre-se</a>
     </span>
   </div>
 </nav>
