@@ -10,7 +10,6 @@ import { SignUpService } from './signup.service';
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
 
 @Component({
-    selector: 'ac-signup',
     templateUrl: 'signup.component.html',
     styleUrls: ['signup.component.css']
 })
@@ -23,7 +22,6 @@ export class SignupComponent implements OnInit{
         private signupService: SignUpService,
         private userNotTakenValidator: UserNotTakenValidatorService,
         private router: Router
-
         ){}
 
     ngOnInit(): void {
@@ -81,12 +79,10 @@ export class SignupComponent implements OnInit{
     //Submte o formulário
     signup(){
         const newUser = this.registerForm.getRawValue() as NewUser;
-        console.log(newUser);
         
         this.signupService.signup(newUser).subscribe(
             () => this.router.navigate(['']),
             err => console.log(err)
-            
         )
         
     }

@@ -7,11 +7,13 @@ import { ContainerModule } from '../shared/container/container.module';
 import { UtilFormModule } from '../shared/util-form/util-form.module';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { HomeComponent } from './home.component';
 
 @NgModule({
     declarations: [
         SigninComponent,
-        SignupComponent
+        SignupComponent,
+        HomeComponent
     ],
     exports: [
         SigninComponent,

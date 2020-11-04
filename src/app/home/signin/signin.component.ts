@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
-    selector: 'ac-signin',
     templateUrl: 'signin.component.html',
     styleUrls: ['signin.component.css']
 })

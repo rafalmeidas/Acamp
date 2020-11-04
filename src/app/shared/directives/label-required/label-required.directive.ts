@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, HostListener, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
 @Directive({
     selector: '[acLabelRequired]'
@@ -13,11 +13,11 @@ export class LabelRequiredDirective {
     ){}
 
 
-    @HostListener('mouseover') 
+    @HostListener('click') 
     teste(){
         console.log('aqui');
-        this.render.setStyle(this.el.nativeElement, 'content', ' *');
-        this.render.setStyle(this.el.nativeElement, 'color', this.color);
+        this.render.setStyle(this.el.nativeElement, 'position', 'fixed');
+        this.render.setStyle(this.el.nativeElement, 'width', '100%');
+        this.render.setStyle(this.el.nativeElement, 'height', '100%');
     }
-} 
-
+}
