@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { TokenService } from '../token/tokenService';
+import { UserService } from '../user/user.service';
 
 const API_URL: string = 'https://acamp.herokuapp.com/';
 
@@ -10,14 +10,14 @@ export class AuthService {
 
     constructor(
         private http: HttpClient,
-        private tokenService: TokenService){}
+        private userService: UserService){}
 
     autenticate( email: string, password: string) {
         return this.http.post( API_URL + 'user/login', {email, password}, {observe: 'response'})
         .pipe(tap( res => {
             const authToken = res.headers.get('Authorization');
             console.log(authToken);
-            this.tokenService.setToken(authToken);
+            this.userService.setToken(authToken);
         }));
     }
 }

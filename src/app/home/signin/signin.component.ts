@@ -31,7 +31,7 @@ export class SigninComponent implements OnInit{
         
         this.auth.autenticate(email, password).subscribe(     
         () => 
-            this.route.navigate(['']),
+            this.route.navigate(['acamps']),
         err => {
             console.log(err);
             this.loginForm.reset();

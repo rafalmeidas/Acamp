@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from '../user/user';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'ac-menu',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  user$: Observable<User>;
+  
+  constructor(
+      private userService: UserService,
+      private router: Router    
+    ){
+    this.user$= userService.getUser();
+  }
 
   ngOnInit(): void {
   }
 
+  logout(){
+    this.userService.logout();
+    this.router.navigate(['login']);
+  }
 }

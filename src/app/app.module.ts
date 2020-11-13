@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ContainerModule } from './shared/container/container.module';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
+import { ErrorsModule } from './errors/erros.module';
+import { MainComponent } from './main/main.component';
 
 
 @NgModule({
@@ -16,6 +18,7 @@ import { HomeModule } from './home/home.module';
   imports: [
     AppRoutingModule,
     HttpClientModule,
+    ErrorsModule,
     BrowserModule,
     ContainerModule,
     CoreModule,

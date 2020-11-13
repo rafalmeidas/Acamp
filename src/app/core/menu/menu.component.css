@@ -5,3 +5,11 @@ a {
 span {
     color: #FFF !important;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.y {
+    padding: 1%;
+}

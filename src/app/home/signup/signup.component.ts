@@ -81,7 +81,7 @@ export class SignupComponent implements OnInit{
         const newUser = this.registerForm.getRawValue() as NewUser;
         
         this.signupService.signup(newUser).subscribe(
-            () => this.router.navigate(['']),
+            () => this.router.navigate(['acamps']),
             err => console.log(err)
         )
         

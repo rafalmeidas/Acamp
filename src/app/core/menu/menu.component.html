@@ -1,5 +1,6 @@
+<div class="y">
 <header class="fixed-top">
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary y">
     <a class="navbar-brand" href="#">ACAMP</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,12 +24,17 @@
           <a class="nav-link" href="#">Contato</a>
         </li>
       </ul>
-      <span hidden class="navbar-text">
-        UserName
+      <span class="navbar-text" *ngIf="(user$ | async) as user; else login">
+        <i class="fa fa-user-circle"></i>
+        <a class="ml-2 mr-1">{{ user.username }}</a>
+        <a class="mr-1 cursor-pointer" (click)="logout()">(Logout)</a>
       </span>
-      <span class="navbar-text">
-        <a [routerLink]="['']">Log-in</a> ou <a [routerLink]="['register']">Registre-se</a>
-      </span>
+      <ng-template #login>
+        <span class="navbar-text">
+          <a [routerLink]="['login']">Log-in</a> ou <a [routerLink]="['register']">Registre-se</a>
+        </span>
+      </ng-template>
     </div>
   </nav>
 </header>
+</div>
