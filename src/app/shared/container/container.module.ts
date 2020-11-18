@@ -4,10 +4,14 @@ import { NgModule } from '@angular/core';
 import { ContainerComponent } from './container.component';
 
 @NgModule({
-    declarations: [ ContainerComponent ],
-    exports: [ ContainerComponent ],
-    imports: [ CommonModule ]
+    declarations: [ 
+        ContainerComponent 
+    ],
+    exports: [ 
+        ContainerComponent
+    ],
+    imports: [ 
+        CommonModule
+    ]
 })
-export class ContainerModule {
-
-}
+export class ContainerModule {}

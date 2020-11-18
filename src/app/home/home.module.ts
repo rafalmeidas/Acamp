@@ -8,6 +8,7 @@ import { UtilFormModule } from '../shared/util-form/util-form.module';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home.component';
+import { CarouselModule } from '../shared/carousel/carousel.module';
 
 @NgModule({
     declarations: [
@@ -22,9 +23,11 @@ import { HomeComponent } from './home.component';
     imports : [
         CommonModule,
         ContainerModule,
+        CarouselModule,
         RouterModule,
         ReactiveFormsModule,
         UtilFormModule,
+        CarouselModule
     ]
 })
 export class HomeModule {

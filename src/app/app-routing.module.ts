@@ -7,7 +7,6 @@ import { SigninComponent } from './home/signin/signin.component';
 import { SignupComponent } from './home/signup/signup.component';
 import { MainComponent } from './main/main.component';
 
-
 const routes: Routes = [
     {
         path: '',
@@ -15,7 +14,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         children: [
             {
-                path: 'login',
+                path: '',
                 component: SigninComponent
             },
             {
@@ -32,7 +31,6 @@ const routes: Routes = [
         path: '**', 
         component: NotFoundComponent 
     }
-    
 ];
 
 @NgModule({

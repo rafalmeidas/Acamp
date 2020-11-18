@@ -1,40 +1,51 @@
 <div class="y">
-<header class="fixed-top">
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary y">
-    <a class="navbar-brand" href="#">ACAMP</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item mr-1 active">
-          <a class="nav-link " href="#"> <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item mr-1">
-          <a class="nav-link" href="#">Acampamentos</a>
-        </li>
-        <li class="nav-item mr-1">
-          <a class="nav-link" href="#">Sobre nós</a>
-        </li>
-        <li class="nav-item mr-1">
-          <a class="nav-link" href="#">Como funciona?</a>
-        </li>
-        <li class="nav-item mr-1">
-          <a class="nav-link" href="#">Contato</a>
-        </li>
-      </ul>
-      <span class="navbar-text" *ngIf="(user$ | async) as user; else login">
-        <i class="fa fa-user-circle"></i>
-        <a class="ml-2 mr-1">{{ user.username }}</a>
-        <a class="mr-1 cursor-pointer" (click)="logout()">(Logout)</a>
-      </span>
-      <ng-template #login>
-        <span class="navbar-text">
-          <a [routerLink]="['login']">Log-in</a> ou <a [routerLink]="['register']">Registre-se</a>
+  <header class="fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary y">
+      <a class="navbar-brand" href="#">ACAMP</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item mr-1 active">
+            <a class="nav-link " href="#"> <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item mr-1">
+            <a class="nav-link" href="#">Acampamentos</a>
+          </li>
+          <li class="nav-item mr-1">
+            <a class="nav-link" href="#">Sobre nós</a>
+          </li>
+          <li class="nav-item mr-1">
+            <a class="nav-link" href="#">Como funciona?</a>
+          </li>
+          <li class="nav-item mr-1">
+            <a class="nav-link" href="#">Contato</a>
+          </li>
+        </ul>
+        
+        <span class="navbar-text" *ngIf="(user$ | async) as user; else login">
+          <i class="fa fa-user-circle"></i>
+          <a class="ml-2 mr-3">{{ user.username }}</a>
+          <a class="mr-1 mr-3 cursor-pointer" (click)="logout()"><i class="fa fa-power-off mr-1" aria-hidden="true"></i>(Logout)</a>
         </span>
-      </ng-template>
-    </div>
-  </nav>
-</header>
+        <ng-template #login>
+          <span class="navbar-text">
+            <a [routerLink]="['']">Log-in</a> ou <a [routerLink]="['register']">Registre-se</a>
+          </span>
+        </ng-template>
+        <!-- Componentizar-->
+        <span class="navbar-text">
+          <i class="fa fa-cog" aria-hidden="true"></i>
+          <a class="ml-2 mr-3 cursor-pointer">Meus Acampamentos</a>
+        </span>
+        <span class="navbar-text">
+          <i class="fa fa-cog" aria-hidden="true"></i>
+          <a class="ml-2 mr-3 cursor-pointer">Gerenciar Acampamentos</a>
+        </span>
+        <!-- Componentizar-->
+      </div>
+    </nav>
+  </header>
 </div>

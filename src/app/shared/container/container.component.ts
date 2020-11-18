@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
     selector: 'ac-container',
     templateUrl: 'container.component.html'
 })
-export class ContainerComponent {
-
-}
+export class ContainerComponent { }
