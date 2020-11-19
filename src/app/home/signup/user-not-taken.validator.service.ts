@@ -37,4 +37,17 @@ export class UserNotTakenValidatorService {
         }
     }
 
+    checkCpfCnpjTaken() {
+        return (control: AbstractControl) => {
+            return control
+                .valueChanges
+                .pipe(debounceTime(300))
+                .pipe(switchMap(cpf => {
+                    return this.signUpService.checkCpfCnpjTaken(cpf);
+                }))//o retorno do signUpService é verdadeiro ou falso true:false
+                .pipe(map(isTaken => isTaken ? { cpfTaken: true } : null )) //isTaken é somente o nome dado para o retorno do pipe anterior
+                .pipe(first()); //finaliza o observable e da o retorno
+        }
+    }
+
 }

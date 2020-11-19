@@ -1,100 +1,101 @@
-<div class="mt-5">
-  <div class="card">
-    <div class="card-body">
-      <h3 class="text-center">Faça seu cadastro gratis</h3>
-    </div>
-    <div class="card-body">
-      <form [formGroup]="registerForm" (submit)="signup()">
+<div class="card">
+  <div class="card-body">
+    <h3 class="text-center">Faça seu cadastro gratis</h3>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="registerForm" (submit)="signup()">
 
-        <div class="form-group">
-          <ac-label-required name="nomeCompleto" label="Nome"></ac-label-required>
-          <input formControlName="name" type="text" class="form-control" id="nomeCompleto" placeholder="Nome completo">
-          <div *ngIf="!name.pristine && name.errors">
-            <ac-input-message *ngIf="registerForm.get('name').errors?.required" message="Obrigatório *">
-            </ac-input-message>
-            <ac-input-message *ngIf="registerForm.get('name').errors?.maxlength"
-              message="Deve conter no máximo 255 caracteres"></ac-input-message>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <ac-label-required name="cpf_cnpj" label="CPF/CNPJ"></ac-label-required>
-          <input formControlName="cpf_cnpj" type="text" class="form-control" id="cpf_cnpj" placeholder="CPF ou CNPJ">
-          <div *ngIf="!cpf_cnpj.pristine && cpf_cnpj.errors">
-            <ac-input-message *ngIf="registerForm.get('cpf_cnpj').errors?.required" message="Obrigatório *">
-            </ac-input-message>
-            <ac-input-message *ngIf="registerForm.get('cpf_cnpj').errors?.cpfInvalido"
-              message="Deve conter no máximo 14"></ac-input-message>
-            <ac-input-message *ngIf="registerForm.get('cpf_cnpj').errors?.cpfInvalido" message="CPF inválido">
-            </ac-input-message>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <ac-label-required name="email" label="Email"></ac-label-required>
-          <input formControlName="email" type="email" class="form-control" id="email" placeholder="Email">
-
-          <div *ngIf="!email.pristine && email.errors">
-            <ac-input-message *ngIf="registerForm.get('email').errors?.required" message="Obrigatório *">
-            </ac-input-message>
-            <ac-input-message *ngIf="registerForm.get('email').errors?.email" message="Email inválido">
-            </ac-input-message>
-            <ac-input-message *ngIf="registerForm.get('email').errors?.emailInvalid" message="Email inválido">
-            </ac-input-message>
-          </div>
-
-          <ac-input-message *ngIf="registerForm.get('email').errors?.emailTaken" message="O email já está em uso">
+      <div class="form-group">
+        <ac-label-required name="nomeCompleto" label="Nome"></ac-label-required>
+        <input formControlName="name" type="text" class="form-control" id="nomeCompleto" placeholder="Nome completo">
+        <div *ngIf="!name.pristine && name.errors">
+          <ac-input-message *ngIf="registerForm.get('name').errors?.required" message="Obrigatório *">
           </ac-input-message>
-          <ac-input-message *ngIf="registerForm.get('email').valid" fail="true" message="O email é válido">
+          <ac-input-message *ngIf="registerForm.get('name').errors?.maxlength"
+            message="Deve conter no máximo 255 caracteres"></ac-input-message>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <ac-label-required name="cpf_cnpj" label="CPF/CNPJ"></ac-label-required>
+        <input formControlName="cpf_cnpj" type="text" class="form-control" id="cpf_cnpj" placeholder="CPF ou CNPJ">
+        <div *ngIf="!cpf_cnpj.pristine && cpf_cnpj.errors">
+          <ac-input-message *ngIf="registerForm.get('cpf_cnpj').errors?.required" message="Obrigatório *">
           </ac-input-message>
-
-        </div>
-
-        <div class="form-group">
-          <ac-label-required name="username" label="Usuário"></ac-label-required>
-          <input formControlName="username" type="text" class="form-control" id="username"
-            placeholder="Nome de usuário">
-
-          <div *ngIf="!username.pristine && username.errors">
-            <ac-input-message *ngIf="registerForm.get('username').errors?.required" message="Obrigatório *">
-            </ac-input-message>
-            <ac-input-message *ngIf="registerForm.get('username').errors?.lowerCase"
-              message="Não pode iniciar com número">
-            </ac-input-message>
-          </div>
-
-          <ac-input-message *ngIf="registerForm.get('username').errors?.userNameTaken" message="Usuário já está em uso">
+          <ac-input-message *ngIf="registerForm.get('cpf_cnpj').errors?.cpfInvalido" message="Deve conter no máximo 14">
+          </ac-input-message><br>
+          <ac-input-message *ngIf="registerForm.get('cpf_cnpj').errors?.cpfInvalido" message="CPF inválido">
           </ac-input-message>
-          <ac-input-message *ngIf="registerForm.get('username').valid" fail="true" message="Usuário válido">
+        </div>
+
+        <ac-input-message *ngIf="registerForm.get('cpf_cnpj').errors?.cpfTaken" message="O CPF/CNPJ já está em uso">
+        </ac-input-message>
+        <ac-input-message *ngIf="registerForm.get('cpf_cnpj').valid" fail="true" message="O CPF/CNPJ é válido">
+        </ac-input-message>
+      </div>
+
+      <div class="form-group">
+        <ac-label-required name="email" label="Email"></ac-label-required>
+        <input formControlName="email" type="email" class="form-control" id="email" placeholder="Email">
+
+        <div *ngIf="!email.pristine && email.errors">
+          <ac-input-message *ngIf="registerForm.get('email').errors?.required" message="Obrigatório *">
           </ac-input-message>
-
+          <ac-input-message *ngIf="registerForm.get('email').errors?.email" message="Email inválido">
+          </ac-input-message>
+          <ac-input-message *ngIf="registerForm.get('email').errors?.emailInvalid" message="Email inválido">
+          </ac-input-message>
         </div>
 
-        <div class="form-group">
-          <ac-label-required name="password" label="Senha"></ac-label-required>
-          <input formControlName="password" type="password" class="form-control" id="password" placeholder="Senha">
-          <div *ngIf="!password.pristine && password.errors">
-            <ac-input-message *ngIf="registerForm.get('password').errors?.required" message="Obrigatório *">
-            </ac-input-message>
-            <ac-input-message *ngIf="registerForm.get('password').errors?.minlength"
-              message="Deve conter no mínimo 7 caracteres"></ac-input-message>
-            <ac-input-message *ngIf="registerForm.get('password').errors?.maxlength"
-              message="Deve conter no máximo 16 caracteres"></ac-input-message>
-          </div>
+        <ac-input-message *ngIf="registerForm.get('email').errors?.emailTaken" message="O email já está em uso">
+        </ac-input-message>
+        <ac-input-message *ngIf="registerForm.get('email').valid" fail="true" message="O email é válido">
+        </ac-input-message>
+      </div>
+
+      <div class="form-group">
+        <ac-label-required name="username" label="Usuário"></ac-label-required>
+        <input formControlName="username" type="text" class="form-control" id="username" placeholder="Nome de usuário">
+
+        <div *ngIf="!username.pristine && username.errors">
+          <ac-input-message *ngIf="registerForm.get('username').errors?.required" message="Obrigatório *">
+          </ac-input-message>
+          <ac-input-message *ngIf="registerForm.get('username').errors?.lowerCase"
+            message="Não pode iniciar com número">
+          </ac-input-message>
         </div>
 
-        <div class="form-group">
-          <ac-label-required name="confirmPassword" label="Confirmar senha"></ac-label-required>
-          <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword"
-            placeholder="Digite novamente a senha">
-          <div *ngIf="!confirmPassword.pristine && confirmPassword.errors">
-            <ac-input-message *ngIf="registerForm.get('confirmPassword').errors?.required" message="Obrigatório *">
-            </ac-input-message>
-          </div>
-          <ac-input-message *ngIf="confirmPassword == password" message="Senhas não são identicas"></ac-input-message>
+        <ac-input-message *ngIf="registerForm.get('username').errors?.userNameTaken" message="Usuário já está em uso">
+        </ac-input-message>
+        <ac-input-message *ngIf="registerForm.get('username').valid" fail="true" message="Usuário válido">
+        </ac-input-message>
+
+      </div>
+
+      <div class="form-group">
+        <ac-label-required name="password" label="Senha"></ac-label-required>
+        <input formControlName="password" type="password" class="form-control" id="password" placeholder="Senha">
+        <div *ngIf="!password.pristine && password.errors">
+          <ac-input-message *ngIf="registerForm.get('password').errors?.required" message="Obrigatório *">
+          </ac-input-message>
+          <ac-input-message *ngIf="registerForm.get('password').errors?.minlength"
+            message="Deve conter no mínimo 7 caracteres"></ac-input-message>
+          <ac-input-message *ngIf="registerForm.get('password').errors?.maxlength"
+            message="Deve conter no máximo 16 caracteres"></ac-input-message>
         </div>
-        <button [disabled]="registerForm.invalid || registerForm.pending" class="btn btn-primary">Cadastrar</button>
-      </form>
-    </div>
+      </div>
+
+      <div class="form-group">
+        <ac-label-required name="confirmPassword" label="Confirmar senha"></ac-label-required>
+        <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword"
+          placeholder="Digite novamente a senha">
+        <div *ngIf="!confirmPassword.pristine && confirmPassword.errors">
+          <ac-input-message *ngIf="registerForm.get('confirmPassword').errors?.required" message="Obrigatório *">
+          </ac-input-message>
+        </div>
+        <ac-input-message *ngIf="confirmPassword == password" message="Senhas não são identicas"></ac-input-message>
+      </div>
+      <button [disabled]="registerForm.invalid || registerForm.pending" class="btn btn-primary">Cadastrar</button>
+    </form>
   </div>
 </div>

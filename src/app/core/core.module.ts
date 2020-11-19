@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ContainerFluidModule } from '../shared/container-fluid/container-fluid.module';
 import { MenuComponent } from './menu/menu.component';
 import { PlataformDetectorService } from './plataform-detector/plataform-detector.service';
 
@@ -16,7 +17,8 @@ import { PlataformDetectorService } from './plataform-detector/plataform-detecto
     ],
     imports : [
         CommonModule,
-        RouterModule
+        RouterModule,
+        ContainerFluidModule
     ]
 })
 export class CoreModule {

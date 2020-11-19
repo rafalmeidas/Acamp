@@ -17,6 +17,10 @@ export class SignUpService {
         return this.http.get(API_URL + 'user/check?email=' + email);
     }
 
+    checkCpfCnpjTaken(cpf: string) {
+        return this.http.get(API_URL + 'user/check?cpf=' + cpf);
+    }
+
     signup( newUser: NewUser ){
         return this.http.post(API_URL + 'user', newUser);
     }

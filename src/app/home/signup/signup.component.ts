@@ -39,7 +39,8 @@ export class SignupComponent implements OnInit{
                     Validators.required,
                     Validators.maxLength(14),
                     Validacoes.ValidaCpf
-                ]
+                ],
+                this.userNotTakenValidator.checkCpfCnpjTaken()
             ],
             'email': [
                 '',

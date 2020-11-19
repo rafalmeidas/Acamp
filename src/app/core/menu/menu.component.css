@@ -11,5 +11,13 @@ span {
 }
 
 .y {
-    padding: 1%;
+    padding-top: 1%;
+}
+
+.mg {
+    margin: 0 1% 0 1%;
+}
+
+.large {
+    width: 15%;
 }
