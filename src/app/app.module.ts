@@ -10,7 +10,7 @@ import { HomeModule } from './home/home.module';
 import { ErrorsModule } from './errors/erros.module';
 import { MainModule } from './main/main.module';
 import { CarouselModule } from './shared/carousel/carousel.module';
-import { GridModule } from './shared/grid/grid.module';
+import { CardModule } from './shared/card/card.module';
 
 
 @NgModule({
@@ -24,7 +24,7 @@ import { GridModule } from './shared/grid/grid.module';
     BrowserModule,
     ContainerModule,
     CarouselModule,
-    GridModule,
+    CardModule,
     MainModule,
     CoreModule,
     HomeModule
