@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { SigninComponent } from './home/signin/signin.component';
 import { SignupComponent } from './home/signup/signup.component';
 import { MainComponent } from './main/main.component';
+import { ManageAcampComponent } from './manage-acamp/manage-acamp.component';
 
 const routes: Routes = [
     {
@@ -26,6 +27,10 @@ const routes: Routes = [
     {
         path: 'acamps',
         component: MainComponent
+    },
+    {
+        path: 'manage-camps',
+        component: ManageAcampComponent
     },
     { 
         path: '**', 

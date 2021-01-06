@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CardModule } from '../shared/card/card.module';
+import { ContainerFluidModule } from '../shared/container-fluid/container-fluid.module';
 import { ContainerModule } from '../shared/container/container.module';
 import { MainComponent } from './main.component';
 
@@ -14,6 +15,7 @@ import { MainComponent } from './main.component';
     imports: [ 
         CommonModule,
         ContainerModule,
+        ContainerFluidModule,
         CardModule
     ]
 })

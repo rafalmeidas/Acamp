@@ -11,6 +11,7 @@ import { ErrorsModule } from './errors/erros.module';
 import { MainModule } from './main/main.module';
 import { CarouselModule } from './shared/carousel/carousel.module';
 import { CardModule } from './shared/card/card.module';
+import { ManageAcampModule } from './manage-acamp/manage-acamp.module';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { CardModule } from './shared/card/card.module';
     CardModule,
     MainModule,
     CoreModule,
-    HomeModule
+    HomeModule,
+    ManageAcampModule
   ],
   providers: [],
   bootstrap: [AppComponent]

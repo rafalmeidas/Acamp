@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ManageAcampComponent } from './manage-acamp.component';
+import { ContainerFluidModule } from '../shared/container-fluid/container-fluid.module';
 
 
 
@@ -12,7 +13,8 @@ import { ManageAcampComponent } from './manage-acamp.component';
     ManageAcampComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ContainerFluidModule
   ]
 })
 export class ManageAcampModule { }
