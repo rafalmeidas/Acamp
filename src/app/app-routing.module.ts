@@ -6,7 +6,10 @@ import { HomeComponent } from './home/home.component';
 import { SigninComponent } from './home/signin/signin.component';
 import { SignupComponent } from './home/signup/signup.component';
 import { MainComponent } from './main/main.component';
+import { AcampsComponent } from './manage-acamp/acamps/acamps.component';
+import { AddAcampComponent } from './manage-acamp/add-acamp/add-acamp.component';
 import { ManageAcampComponent } from './manage-acamp/manage-acamp.component';
+import { MyAcampComponent } from './my-acamp/my-acamp.component';
 
 const routes: Routes = [
     {
@@ -30,7 +33,21 @@ const routes: Routes = [
     },
     {
         path: 'manage-camps',
-        component: ManageAcampComponent
+        component: ManageAcampComponent,
+        children: [
+            {
+                path: '',
+                component: AcampsComponent
+            },
+            { 
+                path: 'add-acamp',
+                component: AddAcampComponent
+            },
+        ]
+    },
+    {
+        path: 'my-acamps',
+        component: MyAcampComponent
     },
     { 
         path: '**', 
