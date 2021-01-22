@@ -4,14 +4,18 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ContainerModule } from './shared/container/container.module';
+import { ContainerModule } from './shared/components/container/container.module';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { ErrorsModule } from './errors/erros.module';
 import { MainModule } from './main/main.module';
-import { CarouselModule } from './shared/carousel/carousel.module';
-import { CardModule } from './shared/card/card.module';
+import { CarouselModule } from './shared/components/carousel/carousel.module';
+import { CardModule } from './shared/components/card/card.module';
 import { ManageAcampModule } from './manage-acamp/manage-acamp.module';
+import { ImageModule } from './shared/components/image/image.module';
+import { AcampsModule } from './manage-acamp/acamps/acamps.module';
+
+
 
 
 @NgModule({
@@ -29,7 +33,9 @@ import { ManageAcampModule } from './manage-acamp/manage-acamp.module';
     MainModule,
     CoreModule,
     HomeModule,
-    ManageAcampModule
+    ManageAcampModule,
+    ImageModule,
+    AcampsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,38 @@
-<div>
-  <a [routerLink]="['/manage-camps/add-acamp']"><button class="btn btn-primary"><i class="fa fa-plus mr-2"></i>Cadastrar</button></a>
-  <p>acamps</p>
-  <p>acamps</p>
-  <p>acamps</p>
-</div>
+<ac-container-fluid>
+  <a [routerLink]="['/manage-camps/add-acamp']"><button class="btn btn-primary"><i
+        class="fa fa-plus mr-2"></i>Cadastrar</button></a>
+  <div class="bg-white border">
+    <!-- Vai vir todos do select e adicionados automaticamente de camp -->
+    <div class="row">
+      <div class="col-lg-3">
+        <ac-card>
+          <h1>ADD</h1>
+        </ac-card>
+      </div>
+      <div class="col-lg-3">
+        <ac-acamp></ac-acamp>
+      </div>
+      <div class="col-lg-3">
+        <ac-acamp></ac-acamp>
+      </div>
+      <div class="col-lg-3">
+        <ac-acamp></ac-acamp>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <ac-acamp></ac-acamp>
+      </div>
+      <div class="col-lg-3">
+        <ac-acamp></ac-acamp>
+      </div>
+      <div class="col-lg-3">
+        <ac-acamp></ac-acamp>
+      </div>
+      <div class="col-lg-3">
+        <ac-acamp></ac-acamp>
+      </div>
+    </div>
+  </div>
+</ac-container-fluid>

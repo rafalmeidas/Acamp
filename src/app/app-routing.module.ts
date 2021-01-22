@@ -32,6 +32,10 @@ const routes: Routes = [
         component: MainComponent
     },
     {
+        path: 'camps',
+        component: AcampsComponent
+    },
+    {
         path: 'manage-camps',
         component: ManageAcampComponent,
         children: [

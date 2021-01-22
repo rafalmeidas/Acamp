@@ -3,12 +3,12 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { ContainerModule } from '../shared/container/container.module';
-import { UtilFormModule } from '../shared/util-form/util-form.module';
+import { ContainerModule } from '../shared/components/container/container.module';
+import { UtilFormModule } from '../shared/components/util-form/util-form.module';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home.component';
-import { CarouselModule } from '../shared/carousel/carousel.module';
+import { CarouselModule } from '../shared/components/carousel/carousel.module';
 
 @NgModule({
     declarations: [

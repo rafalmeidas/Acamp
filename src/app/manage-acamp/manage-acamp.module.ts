@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ManageAcampComponent } from './manage-acamp.component';
-import { ContainerModule } from '../shared/container/container.module';
+import { ContainerModule } from '../shared/components/container/container.module';
 import { RouterModule } from '@angular/router';
 import { AddAcampComponent } from './add-acamp/add-acamp.component';
-import { ContainerFluidModule } from '../shared/container-fluid/container-fluid.module';
-import { AcampsComponent } from './acamps/acamps.component';
+import { ContainerFluidModule } from '../shared/components/container-fluid/container-fluid.module';
+import { MenuLeftComponent } from './menu-left/menu-left.component';
+import { AcampsModule } from './acamps/acamps.module';
 
 
 
@@ -13,7 +14,7 @@ import { AcampsComponent } from './acamps/acamps.component';
   declarations: [
     ManageAcampComponent,
     AddAcampComponent,
-    AcampsComponent
+    MenuLeftComponent
   ],
   exports: [
     ManageAcampComponent
@@ -22,7 +23,8 @@ import { AcampsComponent } from './acamps/acamps.component';
     CommonModule,
     RouterModule,
     ContainerModule,
-    ContainerFluidModule
+    ContainerFluidModule,
+    AcampsModule
   ]
 })
 export class ManageAcampModule { }
