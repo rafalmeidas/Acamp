@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-menu-left',
+  selector: 'ac-menu-left',
   templateUrl: './menu-left.component.html',
   styleUrls: ['./menu-left.component.css']
 })

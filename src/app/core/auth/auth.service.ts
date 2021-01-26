@@ -20,4 +20,8 @@ export class AuthService {
             this.userService.setToken(authToken);
         }));
     }
+
+    logout(){
+        return this.http.get( API_URL + 'user/logout');
+    }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
 
@@ -15,6 +16,7 @@ export class MenuComponent implements OnInit {
   
   constructor(
       private userService: UserService,
+      private authService: AuthService,
       private router: Router    
     ){
     this.user$= userService.getUser();
@@ -24,6 +26,10 @@ export class MenuComponent implements OnInit {
   }
 
   logout(){
+    this.authService.logout()
+        .subscribe( () =>
+          console.log('Logout efetuado sucesso!'),
+        )
     this.userService.logout();
     this.router.navigate(['']);
   }

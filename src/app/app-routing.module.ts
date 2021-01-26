@@ -7,7 +7,7 @@ import { SigninComponent } from './home/signin/signin.component';
 import { SignupComponent } from './home/signup/signup.component';
 import { MainComponent } from './main/main.component';
 import { AcampsComponent } from './manage-acamp/acamps/acamps.component';
-import { AddAcampComponent } from './manage-acamp/add-acamp/add-acamp.component';
+import { AddCampComponent } from './manage-acamp/add-acamp/add-camp.component';
 import { ManageAcampComponent } from './manage-acamp/manage-acamp.component';
 import { MyAcampComponent } from './my-acamp/my-acamp.component';
 
@@ -28,7 +28,7 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'acamps',
+        path: 'acamps', /* Rota para os acampamento para se inscrever */
         component: MainComponent
     },
     {
@@ -36,16 +36,16 @@ const routes: Routes = [
         component: AcampsComponent
     },
     {
-        path: 'manage-camps',
+        path: 'manage-camps/:IdCamp',
         component: ManageAcampComponent,
         children: [
             {
                 path: '',
-                component: AcampsComponent
+                component: AcampsComponent // Criar componente para adicionar os dados base do acampamento ou editar levando o ID
             },
             { 
                 path: 'add-acamp',
-                component: AddAcampComponent
+                component: AddCampComponent
             },
         ]
     },

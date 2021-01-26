@@ -14,6 +14,7 @@ import { CardModule } from './shared/components/card/card.module';
 import { ManageAcampModule } from './manage-acamp/manage-acamp.module';
 import { ImageModule } from './shared/components/image/image.module';
 import { AcampsModule } from './manage-acamp/acamps/acamps.module';
+import { ContainerFluidModule } from './shared/components/container-fluid/container-fluid.module';
 
 
 
@@ -27,7 +28,7 @@ import { AcampsModule } from './manage-acamp/acamps/acamps.module';
     HttpClientModule,
     ErrorsModule,
     BrowserModule,
-    ContainerModule,
+    ContainerFluidModule,
     CarouselModule,
     CardModule,
     MainModule,

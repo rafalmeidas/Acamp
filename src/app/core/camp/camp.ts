@@ -1,4 +1,5 @@
 export interface Camp {
+    id: number;
     name: string;
     initial_date: string;
     final_date: string;

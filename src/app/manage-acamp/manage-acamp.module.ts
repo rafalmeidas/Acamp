@@ -3,21 +3,24 @@ import { CommonModule } from '@angular/common';
 import { ManageAcampComponent } from './manage-acamp.component';
 import { ContainerModule } from '../shared/components/container/container.module';
 import { RouterModule } from '@angular/router';
-import { AddAcampComponent } from './add-acamp/add-acamp.component';
+import { AddCampComponent } from './add-acamp/add-camp.component';
 import { ContainerFluidModule } from '../shared/components/container-fluid/container-fluid.module';
 import { MenuLeftComponent } from './menu-left/menu-left.component';
 import { AcampsModule } from './acamps/acamps.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestInterceptor } from '../core/auth/request-interceptor';
 
 
 
 @NgModule({
   declarations: [
     ManageAcampComponent,
-    AddAcampComponent,
+    AddCampComponent,
     MenuLeftComponent
   ],
   exports: [
-    ManageAcampComponent
+    ManageAcampComponent,
+    MenuLeftComponent
   ],
   imports: [
     CommonModule,
@@ -26,5 +29,6 @@ import { AcampsModule } from './acamps/acamps.module';
     ContainerFluidModule,
     AcampsModule
   ]
+
 })
 export class ManageAcampModule { }
