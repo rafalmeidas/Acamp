@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Camp } from 'src/app/core/camp/camp';
 import { CampService } from 'src/app/core/camp/camp.service';
 
@@ -8,6 +8,11 @@ import { CampService } from 'src/app/core/camp/camp.service';
   styleUrls: ['./acamp.component.css']
 })
 export class AcampComponent implements OnInit {
+
+  @Input() src: string;
+  @Input() title: string;
+  @Input() info: string;
+  
 
   constructor() { }
 

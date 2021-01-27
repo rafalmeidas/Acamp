@@ -1,18 +1,12 @@
 <!-- Editar card para ficar totalmente ajustado e inserindo informações a mais do acamp ex titulo e data -->
 <ac-card class="bg-dark text-white">
-  <div class="row g-0">
 
-    <ac-image-thumbnail class="card-img"
-      url="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-      description="Teste"></ac-image-thumbnail>
+  <ac-image-thumbnail class="card-img" [url]="src" [description]="title"></ac-image-thumbnail>
 
-    <div class="card-img-overlay">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-        This content is a little bit longer.</p>
-      <p class="card-text"><small >Last updated 3 mins ago</small></p>
-    </div>
-
+  <div class="card-img-overlay">
+    <h5 class="card-title">{{ title }}</h5>
+    <p class="card-text limit-text">{{ info }}</p>
+    <p class="card-text"><small>Last updated 3 mins ago</small></p>
   </div>
 
 </ac-card>

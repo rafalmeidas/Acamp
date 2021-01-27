@@ -1,16 +1,17 @@
 <ac-container-fluid>
+  <button class="btn btn-primary mb-1">Cadastrar</button>
   <div class="bg-white">
     <!-- Vai vir todos do select e adicionados automaticamente de camp -->
-    <div class="row">
-      <div class="col-lg-4">
-        <ac-acamp></ac-acamp>
+    <div *ngFor="let cols of rows"  class="row no-gutters">
+
+      <div acDarkenOnHover *ngFor="let camp of cols" class="col-md-4 no-gutters p-1">
+        <ac-acamp 
+          src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+          title="{{camp.name}}"
+          info="{{camp.info}}"
+        ></ac-acamp>
       </div>
-      <div class="col-lg-4">
-        <ac-acamp></ac-acamp>
-      </div>
-      <div class="col-lg-4">
-        <ac-acamp></ac-acamp>
-      </div>
+
     </div>
   </div>
 </ac-container-fluid>

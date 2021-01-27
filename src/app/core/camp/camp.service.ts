@@ -12,6 +12,6 @@ export class CampService {
         ){}
 
     userCamps(){
-        return this.http.get<Camp>(API_URL + 'camp');
+        return this.http.get<Camp[]>(API_URL + 'camp');
     }
 }

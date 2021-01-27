@@ -7,6 +7,7 @@ import { SigninComponent } from './home/signin/signin.component';
 import { SignupComponent } from './home/signup/signup.component';
 import { MainComponent } from './main/main.component';
 import { AcampsComponent } from './manage-acamp/acamps/acamps.component';
+import { CampListResolver } from './manage-acamp/acamps/camp.resolve';
 import { AddCampComponent } from './manage-acamp/add-acamp/add-camp.component';
 import { ManageAcampComponent } from './manage-acamp/manage-acamp.component';
 import { MyAcampComponent } from './my-acamp/my-acamp.component';
@@ -33,7 +34,10 @@ const routes: Routes = [
     },
     {
         path: 'camps',
-        component: AcampsComponent
+        component: AcampsComponent,
+        resolve: {
+            camps: CampListResolver
+        }
     },
     {
         path: 'manage-camps/:IdCamp',
