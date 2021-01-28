@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-add-camp',
+  selector: 'ac-add-camp',
   templateUrl: './add-camp.component.html',
   styleUrls: ['./add-camp.component.css']
 })

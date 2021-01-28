@@ -1,11 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Camp } from 'src/app/core/camp/camp';
-import { CampService } from 'src/app/core/camp/camp.service';
 
 @Component({
-  selector: 'ac-acamp',
-  templateUrl: './acamp.component.html',
-  styleUrls: ['./acamp.component.css']
+  selector: 'ac-camp',
+  templateUrl: './camp.component.html',
+  styleUrls: ['./camp.component.css']
 })
 export class AcampComponent implements OnInit {
 

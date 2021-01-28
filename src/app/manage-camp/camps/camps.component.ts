@@ -1,14 +1,13 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Camp } from 'src/app/core/camp/camp';
-import { CampService } from 'src/app/core/camp/camp.service';
 
 @Component({
-  selector: 'ac-acamps',
-  templateUrl: './acamps.component.html',
-  styleUrls: ['./acamps.component.css']
+  selector: 'ac-camps',
+  templateUrl: './camps.component.html',
+  styleUrls: ['./camps.component.css']
 })
-export class AcampsComponent implements OnInit, OnChanges {
+export class CampsComponent implements OnInit, OnChanges {
 
   camps: Camp[] = [];
   rows: any[] = [];
@@ -16,7 +15,6 @@ export class AcampsComponent implements OnInit, OnChanges {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private campService: CampService
   ) { }
   
   ngOnChanges(changes: SimpleChanges): void {

@@ -6,10 +6,10 @@ import { HomeComponent } from './home/home.component';
 import { SigninComponent } from './home/signin/signin.component';
 import { SignupComponent } from './home/signup/signup.component';
 import { MainComponent } from './main/main.component';
-import { AcampsComponent } from './manage-acamp/acamps/acamps.component';
-import { CampListResolver } from './manage-acamp/acamps/camp.resolve';
-import { AddCampComponent } from './manage-acamp/add-acamp/add-camp.component';
-import { ManageAcampComponent } from './manage-acamp/manage-acamp.component';
+import { CampsComponent } from './manage-camp/camps/camps.component';
+import { CampListResolver } from './manage-camp/camps/camp-list.resolve';
+import { AddCampComponent } from './manage-camp/tabs/add-camp/add-camp.component';
+import { ManageCampComponent } from './manage-camp/manage-camp.component';
 import { MyAcampComponent } from './my-acamp/my-acamp.component';
 
 const routes: Routes = [
@@ -34,21 +34,21 @@ const routes: Routes = [
     },
     {
         path: 'camps',
-        component: AcampsComponent,
+        component: CampsComponent,
         resolve: {
             camps: CampListResolver
         }
     },
     {
         path: 'manage-camps/:IdCamp',
-        component: ManageAcampComponent,
+        component: ManageCampComponent,
         children: [
             {
                 path: '',
-                component: AcampsComponent // Criar componente para adicionar os dados base do acampamento ou editar levando o ID
+                component: CampsComponent // Criar componente para adicionar os dados base do acampamento ou editar levando o ID
             },
             { 
-                path: 'add-acamp',
+                path: 'add-camp',
                 component: AddCampComponent
             },
         ]

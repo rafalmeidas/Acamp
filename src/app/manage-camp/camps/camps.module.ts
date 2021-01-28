@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AcampsComponent } from './acamps.component';
-import { AcampComponent } from './acamp/acamp.component';
+import { CampsComponent } from './camps.component';
+import { AcampComponent } from './camp/camp.component';
 import { ImageModule } from 'src/app/shared/components/image/image.module';
 import { RouterModule } from '@angular/router';
 import { CardModule } from 'src/app/shared/components/card/card.module';
@@ -12,11 +12,11 @@ import { DarkenOnHoverModule } from 'src/app/shared/directives/darken-on-hover/d
 
 @NgModule({
     declarations: [
-        AcampsComponent, 
+        CampsComponent, 
         AcampComponent
     ],
     exports: [ 
-        AcampsComponent,
+        CampsComponent,
         AcampComponent
     ],
     imports: [ 
