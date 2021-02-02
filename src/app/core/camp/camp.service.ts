@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Camp } from './camp';
 
-const API_URL: string = 'https://acamp.herokuapp.com/';
+const API_URL: string = 'http://18.230.23.24:3000/';
 
 @Injectable({ providedIn: 'root'})
 export class CampService {
@@ -11,7 +11,7 @@ export class CampService {
         private http: HttpClient
         ){}
 
-    userCamps(){
-        return this.http.get<Camp[]>(API_URL + 'camp');
+    userCamps( idUser: number){
+        return this.http.get<Camp[]>(API_URL + 'user/' + idUser +  '/camp');
     }
 }

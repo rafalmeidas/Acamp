@@ -4,13 +4,18 @@ import { Observable } from 'rxjs';
 
 import { CampService } from '../../core/camp/camp.service';
 import { Camp } from '../../core/camp/camp';
+import { UserService } from 'src/app/core/user/user.service';
 
 @Injectable({ providedIn: 'root'})
 export class CampListResolver implements Resolve<Observable<Camp[]>>{
 
-    constructor(private service: CampService) {}
+    constructor(
+        private service: CampService,
+        private userService: UserService
+        ) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return this.service.userCamps();
+        const userId: number = this.userService.getUserId();
+        return this.service.userCamps(userId);
     }
 }

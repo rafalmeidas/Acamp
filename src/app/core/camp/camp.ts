@@ -1,4 +1,7 @@
+import { Image } from './image';
+
 export interface Camp {
+
     id: number;
     name: string;
     initial_date: string;
@@ -11,5 +14,5 @@ export interface Camp {
     neighborhood: string;
     complement: string;
     city_id: number;
-    camp_image: string;
+    images: Image[];
 }

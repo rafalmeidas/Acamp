@@ -9,10 +9,9 @@ import { Camp } from 'src/app/core/camp/camp';
 })
 export class CampsComponent implements OnInit, OnChanges {
 
-  camps: Camp[] = [];
+  camps: Camp [] = [];
   rows: any[] = [];
   
-
   constructor(
     private activatedRoute: ActivatedRoute,
   ) { }
@@ -32,9 +31,16 @@ export class CampsComponent implements OnInit, OnChanges {
   groupColomns(camps: Camp[]) {
     const newRows = [];
 
-    for (let index = 0; index < camps.length; index += 3) {
-      newRows.push(camps.slice(index, index + 3));
+    //Acessa o objeto javascript e monta um novo array com acesso direto
+    var chaves = Object.keys(camps);
+    for (var i = 0; i < chaves.length; i++){
+      var camp = camps[chaves[i]];
     }
+
+    for (let index = 0; index < camp.length; index += 3) { 
+      newRows.push(camp.slice(index, index + 3));
+    }
+
     return newRows;
   }
 

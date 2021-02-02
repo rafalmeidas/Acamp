@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AcampComponent implements OnInit {
 
-  @Input() src: string;
+  @Input() url: string;
   @Input() title: string;
   @Input() info: string;
   

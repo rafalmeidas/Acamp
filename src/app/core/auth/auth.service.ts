@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { UserService } from '../user/user.service';
 
-const API_URL: string = 'https://acamp.herokuapp.com/';
+const API_URL: string = 'http://18.230.23.24:3000/';
 
 @Injectable({ providedIn: 'root'})
 export class AuthService {
