@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { UserService } from '../user/user.service';
 
-const API_URL: string = 'http://18.230.23.24:3000/';
+const API_URL =  environment.API_URL;
 
 @Injectable({ providedIn: 'root'})
 export class AuthService {

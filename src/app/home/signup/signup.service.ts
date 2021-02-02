@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http"
 import { NewUser } from 'src/app/core/user/new-user';
+import { environment } from 'src/environments/environment';
 
-const API_URL = "https://acamp.herokuapp.com/";
+const API_URL =  environment.API_URL;
 
 @Injectable({ providedIn: 'root' })
 export class SignUpService {
