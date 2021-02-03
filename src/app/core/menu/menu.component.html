@@ -48,11 +48,11 @@
               </a>
             </button>
 
-            <button class="dropdown-item bg-secondary" type="button" *ngIf="(user$ | async) as user;">
-              <a class="cursor-pointer" (click)="logout()">
-                <i class="fa fa-power-off mr-1" aria-hidden="true"></i>(Logout)
-              </a>
-            </button>
+            <a class="cursor-pointer" (click)="logout()">
+              <button class="dropdown-item bg-secondary" type="button" *ngIf="(user$ | async) as user;">
+              <i class="fa fa-power-off mr-1" aria-hidden="true"></i>(Logout)
+              </button>
+            </a>
           </div>
         </div>
 
