@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
 import { Cep } from './cep';
+import { map } from 'rxjs/operators'
 
 const API_URL = 'https://viacep.com.br/ws/';
 
@@ -17,7 +17,17 @@ export class CepService {
   ) { }
   
   searchCEP(cep: string){
-    return this.http.get(API_URL + '87509030' + '/json/');
+
+    if(cep != ''){
+
+      var validacep = /^[0-9]{8}$/;
+
+      //Valida o formato do CEP.
+      if(validacep.test(cep)){
+        return this.http.get<Cep>(API_URL + cep + '/json/')
+        .pipe( map(dados => dados))  
+      }
+    }
   }
 
   converterRespostaParaCep(cepNaResposta): Cep {

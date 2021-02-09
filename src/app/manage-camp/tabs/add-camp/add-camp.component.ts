@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Cep } from 'src/app/core/apis/cep/cep';
@@ -9,31 +10,69 @@ import { CepService } from 'src/app/core/apis/cep/cep.service';
   templateUrl: './add-camp.component.html',
   styleUrls: ['./add-camp.component.css']
 })
-export class AddCampComponent implements OnInit, OnChanges ,OnDestroy {
+export class AddCampComponent implements OnInit, OnDestroy {
 
   debounce: Subject<string> = new Subject<string>();
-  adrress: Cep = new Cep;
+  cep: Cep;
 
-  @Input() cep: string = '';
+  cepInput: string = '';
+  campForm: FormGroup;
 
   constructor(
-    private cepService: CepService
+    private cepService: CepService,
+    private formBuilder: FormBuilder
   ) { }
   
   ngOnInit(): void {
-    this.debounce
-      .pipe(debounceTime(300))
-      .subscribe(filter => this.cep = filter);
+    this.campForm = this.formBuilder.group({
+      'name': [
+        ''
+      ],
+      'initial_date': [
+        ''
+      ],
+      'final_date': [
+        ''
+      ],
+      'min_age': [
+        ''
+      ],
+      'info': [
+        ''
+      ],
+      'cep': [
+        '87509030'
+      ],
+      'street': [
+        ''
+      ],
+      'number': [
+        ''
+      ],
+      'neighborhood': [
+        ''
+      ],
+      'complement': [
+        ''
+      ]/*,
+      'city_id': [
+        ''
+      ],
+      'images': [
+        ''
+      ]*/
+    })
+      
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-
-    if(changes.cep.currentValue){
-      this.cepService.searchCEP(this.cep);
-    }
-  }
-  
   ngOnDestroy(): void {
     this.debounce.unsubscribe();
   }
+
+  searchCEP(){
+    // //console.log(this.campForm.get('cep').value);
+    this.cepService.searchCEP(this.campForm.get('cep').value)
+        .subscribe( dados => console.log(dados))
+  }
+  
 }

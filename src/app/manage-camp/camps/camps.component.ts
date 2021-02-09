@@ -25,13 +25,15 @@ export class CampsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.camps = this.activatedRoute.snapshot.data.camps;
+    console.log(this.camps);
+    
     this.rows = this.groupColomns(this.camps);
   }
 
   groupColomns(camps: Camp[]) {
     const newRows = [];
 
-    //Acessa o objeto javascript e monta um novo array com acesso direto
+    //Acessa o objeto javascript e monta um novo array com acesso direto (ACABAR COM ISSO)
     var chaves = Object.keys(camps);
     for (var i = 0; i < chaves.length; i++){
       var camp = camps[chaves[i]];
@@ -40,6 +42,7 @@ export class CampsComponent implements OnInit, OnChanges {
     for (let index = 0; index < camp.length; index += 3) { 
       newRows.push(camp.slice(index, index + 3));
     }
+    console.log(newRows);
 
     return newRows;
   }

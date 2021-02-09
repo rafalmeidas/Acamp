@@ -1,13 +1,13 @@
-<form>
+<form [formGroup]="campForm">
 
   <div class="form-row">
     <div class="form-group col-md-8">
       <label for="idNome">Nome</label>
-      <input type="text" class="form-control" id="idNome" placeholder="Nome do acampamento">
+      <input formControlName="name" type="text" class="form-control" id="idNome" placeholder="Nome do acampamento">
     </div>
     <div class="form-group col-md-4">
       <label for="idIdadeMin">Idade mínima</label>
-      <input type="number" class="form-control" id="idIdadeMin" placeholder="Idade mínima">
+      <input formControlName="min_age" type="number" class="form-control" id="idIdadeMin" placeholder="Idade mínima">
     </div>
   </div>
 
@@ -16,11 +16,11 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="idDataInicio">Ínicio</label>
-        <input type="date" class="form-control" id="idDataInicio">
+        <input formControlName="initial_date" type="date" class="form-control" id="idDataInicio">
       </div>
       <div class="form-group col-md-6">
         <label for="idDataFim">Fim</label>
-        <input type="date" class="form-control" id="idDataFim">
+        <input formControlName="final_date" type="date" class="form-control" id="idDataFim">
       </div>
     </div>
   </fieldset>
@@ -28,7 +28,7 @@
   <div class="form-row mt-4">
     <div class="form-group col-md-12">
       <label for="idInfo">Informações</label>
-      <textarea class="form-control" id="idInfo" rows="3"></textarea>
+      <textarea formControlName="info" class="form-control" id="idInfo" rows="3"></textarea>
     </div>
   </div>
 
@@ -37,28 +37,28 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="idCEP">CEP</label>
-        <input type="number" class="form-control" id="idCEP" placeholder="CEP" (keyup)="debounce.next($event.target.value)">
+        <input formControlName="cep" type="number" class="form-control" id="idCEP" placeholder="CEP" (blur)="searchCEP()">
         {{ cep }}
       </div>
-      <div class="form-group col-md-8">
+      <div class="form-group col-md-6">
         <label for="idRua">Rua</label>
-        <input type="text" class="form-control" id="idRua" disabled>
+        <input formControlName="street" type="text" class="form-control" id="idRua" disabled>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="idNum">Nº</label>
-        <input type="text" class="form-control" id="idNum" disabled>
+        <input formControlName="number" type="text" class="form-control" id="idNum" disabled>
       </div>
       <div class="form-group col-md-6">
         <label for="idBairro">Bairro</label>
-        <input type="text" class="form-control" id="idBairro" disabled>
+        <input formControlName="neighborhood" type="text" class="form-control" id="idBairro" disabled>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="idComplemento">Complemento</label>
-        <input type="text" class="form-control" id="idComplemento">
+        <input formControlName="complement" type="text" class="form-control" id="idComplemento">
       </div>
     </div>
   </fieldset>
