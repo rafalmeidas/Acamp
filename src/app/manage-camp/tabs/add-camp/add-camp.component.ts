@@ -41,7 +41,7 @@ export class AddCampComponent implements OnInit, OnDestroy {
         ''
       ],
       'cep': [
-        '87509030'
+        ''
       ],
       'street': [
         ''
@@ -50,6 +50,12 @@ export class AddCampComponent implements OnInit, OnDestroy {
         ''
       ],
       'neighborhood': [
+        ''
+      ],
+      'city': [
+        ''
+      ],
+      'uf': [
         ''
       ],
       'complement': [
@@ -70,9 +76,17 @@ export class AddCampComponent implements OnInit, OnDestroy {
   }
 
   searchCEP(){
-    // //console.log(this.campForm.get('cep').value);
     this.cepService.searchCEP(this.campForm.get('cep').value)
-        .subscribe( dados => console.log(dados))
+        .subscribe( dados => this.insertCEP(dados))
+  }
+
+  insertCEP(dados){
+    this.campForm.patchValue({
+      street: dados.logradouro,
+      neighborhood: dados.bairro,
+      city: dados.localidade,
+      uf: dados.uf
+    });
   }
   
 }

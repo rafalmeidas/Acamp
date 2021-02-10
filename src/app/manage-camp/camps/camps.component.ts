@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Camp } from 'src/app/core/camp/camp';
 
 @Component({
@@ -11,11 +12,12 @@ export class CampsComponent implements OnInit, OnChanges {
 
   camps: Camp [] = [];
   rows: any[] = [];
-  
+  camps$: Observable<Camp>;
+
   constructor(
     private activatedRoute: ActivatedRoute,
   ) { }
-  
+
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.camps){
       this.rows = this.groupColomns(this.camps)

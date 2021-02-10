@@ -15,14 +15,13 @@ export class MenuComponent implements OnInit {
   user$: Observable<User>;
   
   constructor(
-      private userService: UserService,
-      private authService: AuthService,
-      private router: Router    
-    ){
-    this.user$= userService.getUser();
-  }
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router    
+  ){}
 
   ngOnInit(): void {
+    this.user$= this.userService.getUser();
   }
 
   logout(){

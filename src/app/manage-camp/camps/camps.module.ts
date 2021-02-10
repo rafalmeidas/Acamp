@@ -9,7 +9,6 @@ import { CardModule } from 'src/app/shared/components/card/card.module';
 import { ContainerFluidModule } from 'src/app/shared/components/container-fluid/container-fluid.module';
 import { DarkenOnHoverModule } from 'src/app/shared/directives/darken-on-hover/darken-on-hover.module';
 
-
 @NgModule({
     declarations: [
         CampsComponent, 
@@ -25,7 +24,7 @@ import { DarkenOnHoverModule } from 'src/app/shared/directives/darken-on-hover/d
         CardModule,
         RouterModule,
         ContainerFluidModule,
-        DarkenOnHoverModule
+        DarkenOnHoverModule,
     ]
 })
 export class AcampsModule {

@@ -38,21 +38,28 @@
       <div class="form-group col-md-4">
         <label for="idCEP">CEP</label>
         <input formControlName="cep" type="number" class="form-control" id="idCEP" placeholder="CEP" (blur)="searchCEP()">
-        {{ cep }}
       </div>
       <div class="form-group col-md-6">
         <label for="idRua">Rua</label>
         <input formControlName="street" type="text" class="form-control" id="idRua" disabled>
       </div>
+      <div class="form-group col-md-2">
+        <label for="idNum">Nº</label>
+        <input formControlName="number" type="text" class="form-control" id="idNum">
+      </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="idNum">Nº</label>
-        <input formControlName="number" type="text" class="form-control" id="idNum" disabled>
-      </div>
-      <div class="form-group col-md-6">
         <label for="idBairro">Bairro</label>
         <input formControlName="neighborhood" type="text" class="form-control" id="idBairro" disabled>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="idCidade">Cidade</label>
+        <input formControlName="city" type="text" class="form-control" id="idCidade" disabled>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="idEstado">Estado</label>
+        <input formControlName="uf" type="text" class="form-control" id="idEstado" disabled>
       </div>
     </div>
     <div class="form-row">
