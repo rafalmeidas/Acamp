@@ -17,6 +17,7 @@ export class AddCampComponent implements OnInit, OnDestroy {
   debounce: Subject<string> = new Subject<string>();
   cep: Cep;
   private cityId: number;
+  private camp_image: File;
 
   cepInput: string = '';
   campForm: FormGroup;
@@ -54,7 +55,7 @@ export class AddCampComponent implements OnInit, OnDestroy {
       'number': [
         ''
       ],
-      'neighbordhooh': [
+      'neighborhood': [
         ''
       ],
       'city': [
@@ -85,7 +86,7 @@ export class AddCampComponent implements OnInit, OnDestroy {
   insertCEP(dados: Cep){
     this.campForm.patchValue({
       street: dados.logradouro,
-      neighbordhooh: dados.bairro,
+      neighborhood: dados.bairro,
       city: dados.localidade,
       uf: dados.uf,
     });
@@ -101,13 +102,21 @@ export class AddCampComponent implements OnInit, OnDestroy {
     const cep = this.campForm.get('cep').value;
     const street = this.campForm.get('street').value;
     const number = this.campForm.get('number').value;
-    const neighbordhooh = this.campForm.get('neighbordhooh').value;
+    const neighborhood = this.campForm.get('neighborhood').value;
     const complement = this.campForm.get('complement').value;
     const city_id = this.cityId;
-    const camp_image = this.campForm.get('camp_image').value;
+    console.log(this.camp_image);
+    
     this.campService
-      .insert(name, initialDate, finalDate, minAge, info, cep, street, number, neighbordhooh, complement, city_id, camp_image)
+      .insert(name, initialDate, finalDate, minAge, info, cep, street, number, neighborhood, complement, city_id, this.camp_image)
       .subscribe( () => this.router.navigate(['']));
+  }
+
+  handleFile(file: File){
+    this.camp_image = file;
+    //const reader = new FileReader();
+    //reader.onload = (event: any) => this.preview = event.target.result; //disponibiliza de forma assincrona o acesso a imagem
+    //reader.readAsDataURL(file);
   }
   
 }

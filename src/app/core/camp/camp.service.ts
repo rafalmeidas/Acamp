@@ -17,7 +17,7 @@ export class CampService {
         return this.http.get<Camp[]>(API_URL + 'user/' + idUser +  '/camp?include=true');
     }
 
-    insert(name, initial_date, final_date, min_age, info, cep, street, number, neighbordhooh, complement, city_id, camp_image){
+    insert(name, initial_date, final_date, min_age, info, cep, street, number, neighborhood, complement, city_id, camp_image){
         const formData = new FormData();
         formData.append('name', name);
         formData.append('initial_date', initial_date);
@@ -27,9 +27,9 @@ export class CampService {
         formData.append('cep', cep);
         formData.append('street', street);
         formData.append('number', number);
-        formData.append('neighbordhooh', neighbordhooh);
+        formData.append('neighborhood', neighborhood);
         formData.append('complement', complement);
-        formData.append('complement', city_id);
+        formData.append('city_id', city_id);
         formData.append('camp_image', camp_image);
         console.log(formData);
         
