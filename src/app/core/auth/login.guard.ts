@@ -7,17 +7,18 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthGuard implements CanActivate{
+export class LoginGuard implements CanActivate{
 
     constructor(
         private userService: UserService,
         private router: Router
-    ){}
+        ){}
 
-    //Caso não esteja logado todas as rotas que usarem esse guard são jogados para a página de login
+
     canActivate(route: ActivatedRouteSnapshot, router: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean>{
-        if(!this.userService.isLogged()){
-            this.router.navigate(['']);
+        if(this.userService.isLogged()){
+            //Se o usuário está logado ele envia false e bloqueia o acesso a rota, e já envia o usuário para a nova rota user/userName 
+            this.router.navigate(['acamps']);
             return false;
         }
         return true;

@@ -11,12 +11,13 @@ import { CampListResolver } from './manage-camp/camps/camp-list.resolve';
 import { AddCampComponent } from './manage-camp/tabs/add-camp/add-camp.component';
 import { ManageCampComponent } from './manage-camp/manage-camp.component';
 import { MyAcampComponent } from './my-acamp/my-acamp.component';
+import { LoginGuard } from './core/auth/login.guard';
 
 const routes: Routes = [
     {
         path: '',
         component: HomeComponent,
-        canActivate: [AuthGuard],
+        canActivate: [LoginGuard],
         children: [
             {
                 path: '',
@@ -35,6 +36,7 @@ const routes: Routes = [
     {
         path: 'camps',
         component: CampsComponent,
+        canActivate: [AuthGuard],
         resolve: {
             camps: CampListResolver
         }
@@ -42,6 +44,7 @@ const routes: Routes = [
     {
         path: 'manage-camps/:IdCamp',
         component: ManageCampComponent,
+        canActivate: [AuthGuard],
         children: [
             {
                 path: '',
@@ -55,7 +58,8 @@ const routes: Routes = [
     },
     {
         path: 'my-acamps',
-        component: MyAcampComponent
+        component: MyAcampComponent,
+        canActivate: [AuthGuard],
     },
     { 
         path: '**', 
