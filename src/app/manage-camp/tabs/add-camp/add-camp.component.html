@@ -1,4 +1,4 @@
-<form [formGroup]="campForm">
+<form [formGroup]="campForm" (submit)="insert()">
 
   <div class="form-row">
     <div class="form-group col-md-8">
@@ -51,7 +51,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="idBairro">Bairro</label>
-        <input formControlName="neighborhood" type="text" class="form-control" id="idBairro" disabled>
+        <input formControlName="neighbordhooh" type="text" class="form-control" id="idBairro" disabled>
       </div>
       <div class="form-group col-md-4">
         <label for="idCidade">Cidade</label>
@@ -72,7 +72,8 @@
   <div class="form-row">
     <div class="form-group col-md-12">
       <label for="idComplemento">Imagem</label>
-      <input formControlName="complement" type="text" class="form-control" id="idComplemento">
+      <input formControlName="camp_image" type="file" accept="image/*"
+        (change)="$event.target.files[0]">
     </div>
   </div>
 

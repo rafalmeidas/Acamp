@@ -5,6 +5,6 @@ export class Cep {
     bairro: string;
     localidade: string;
     uf: string;
-    ibge: string;
+    ibge: number;
     ddd: string;
 }
