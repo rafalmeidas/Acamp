@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit{
                 '', 
                 [
                     Validators.required, 
-                    Validators.maxLength(255)
+                    Validators.maxLength(40)
                 ]
             ],
             'cpf_cnpj': [

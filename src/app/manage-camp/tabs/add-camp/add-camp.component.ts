@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -32,28 +32,51 @@ export class AddCampComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.campForm = this.formBuilder.group({
       'name': [
-        ''
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(20)
+        ]
       ],
       'initial_date': [
-        ''
+        '',
+        [
+          Validators.required,
+        ]
       ],
       'final_date': [
-        ''
+        '',
+        [
+          Validators.required,
+        ]
       ],
       'min_age': [
-        ''
+        '',
+        [
+          Validators.required,
+        ]
       ],
       'info': [
-        ''
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(80)
+        ]
       ],
       'cep': [
-        ''
+        '',
+        [
+          Validators.required,
+        ]
       ],
       'street': [
         ''
       ],
       'number': [
-        ''
+        '',
+        [
+          Validators.required,
+        ]
       ],
       'neighborhood': [
         ''
@@ -68,7 +91,10 @@ export class AddCampComponent implements OnInit, OnDestroy {
         ''
       ],
       'camp_image': [
-        ''
+        '',
+        [
+          Validators.required,
+        ]
       ]
     })
       
@@ -109,7 +135,7 @@ export class AddCampComponent implements OnInit, OnDestroy {
     
     this.campService
       .insert(name, initialDate, finalDate, minAge, info, cep, street, number, neighborhood, complement, city_id, this.camp_image)
-      .subscribe( () => this.router.navigate(['']));
+      .subscribe( () => this.router.navigate(['/camps']));
   }
 
   handleFile(file: File){
@@ -117,6 +143,10 @@ export class AddCampComponent implements OnInit, OnDestroy {
     //const reader = new FileReader();
     //reader.onload = (event: any) => this.preview = event.target.result; //disponibiliza de forma assincrona o acesso a imagem
     //reader.readAsDataURL(file);
+  }
+
+  get name(){
+    return this.campForm.get('name');
   }
   
 }
