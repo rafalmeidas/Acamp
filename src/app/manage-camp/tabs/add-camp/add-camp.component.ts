@@ -60,13 +60,10 @@ export class AddCampComponent implements OnInit, OnDestroy {
       ],
       'complement': [
         ''
-      ]/*,
-      'city_id': [
-        ''
       ],
-      'images': [
+      'camp_image': [
         ''
-      ]*/
+      ]
     })
       
   }
