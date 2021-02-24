@@ -6,6 +6,7 @@ import { debounceTime } from 'rxjs/operators';
 import { Cep } from 'src/app/core/apis/cep/cep';
 import { CepService } from 'src/app/core/apis/cep/cep.service';
 import { CampService } from 'src/app/core/camp/camp.service';
+import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
 
 @Component({
   selector: 'ac-add-camp',
@@ -42,7 +43,9 @@ export class AddCampComponent implements OnInit, OnDestroy {
         '',
         [
           Validators.required,
-        ]
+          Validacoes.CurrentDate
+        ],
+        
       ],
       'final_date': [
         '',
@@ -147,6 +150,10 @@ export class AddCampComponent implements OnInit, OnDestroy {
 
   get name(){
     return this.campForm.get('name');
+  }
+
+  get initial_date(){
+    return this.campForm.get('initial_date');
   }
   
 }

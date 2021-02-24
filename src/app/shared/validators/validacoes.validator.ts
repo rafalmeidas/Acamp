@@ -69,4 +69,22 @@ export class Validacoes {
     controle.get('confirmarSenha').setErrors({ senhasNaoCoincidem: true });
   }
 
+  static CurrentDate(control: AbstractControl){
+  
+    if(control.value){
+
+      //Data atual
+      let dateCurrent = new Date();
+      
+      //Crio a data utilizando um array, se não sempre fica um dia a menos na data do formulatio
+      let dateForm =  new Date(control.value.split('-'));
+  
+      if( dateForm > dateCurrent){
+        return null;
+      }
+    }
+
+    return {dataMenorQueAtual: true}
+  }
+
 }

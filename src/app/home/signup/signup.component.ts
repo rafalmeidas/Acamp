@@ -46,7 +46,6 @@ export class SignupComponent implements OnInit{
                 '',
                 [ 
                     Validators.required, 
-                   
                     emailValidator
                 ],
                 this.userNotTakenValidator.checkEmailTaken()

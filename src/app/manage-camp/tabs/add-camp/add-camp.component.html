@@ -20,6 +20,10 @@
       <div class="form-group col-md-6">
         <label for="idDataInicio">Ínicio</label>
         <input formControlName="initial_date" type="date" class="form-control" id="idDataInicio">
+        <div *ngIf="!initial_date.pristine && initial_date.errors">
+          <ac-input-message *ngIf="campForm.get('initial_date').errors?.required" message="Obrigatório *"></ac-input-message>
+          <ac-input-message *ngIf="campForm.get('initial_date').errors?.dataMenorQueAtual" message="Data menor que a atual"></ac-input-message>
+        </div>
       </div>
       <div class="form-group col-md-6">
         <label for="idDataFim">Fim</label>
