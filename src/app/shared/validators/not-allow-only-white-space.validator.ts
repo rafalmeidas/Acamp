@@ -1,12 +1,10 @@
-import {AbstractControl } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
-export function NotAllowOnlyWhiteSpace (control: AbstractControl){
-    if(control.value && /^[ \t]+$/.test(control.value)){
-        console.log('erro');
-        
-        return {onlyWhiteSpace: true}
+export function NotAllowOnlyWhiteSpace(control: AbstractControl) {
+    //Testa se o campo está sendo digítado somente com espaços em branco ou começa com espaço em branco
+    if (control.value && (/^[ \t]+$/.test(control.value) || /^ /.test(control.value))) {
+        return { onlyWhiteSpace: true }
     } else {
-        console.log('passou');
         return null;
     }
 }

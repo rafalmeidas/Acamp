@@ -6,7 +6,7 @@
       <input formControlName="name" type="text" class="form-control" id="idNome" placeholder="Nome do acampamento">
       <div *ngIf="!name.pristine && name.errors">
         <ac-input-message *ngIf="campForm.get('name').errors?.required" message="Obrigatório *"></ac-input-message>
-        <ac-input-message *ngIf="campForm.get('name').errors?.onlyWhiteSpace" message="Não é permitido somente campos em branco!"></ac-input-message>
+        <ac-input-message *ngIf="campForm.get('name').errors?.onlyWhiteSpace" message="O campo nome não pode começar com espaço nem conter somente espaços em branco"></ac-input-message>
         <ac-input-message *ngIf="campForm.get('name').errors?.maxlength" message="O campo nome deve ter no máximo 50 caracteres"></ac-input-message>
         <ac-input-message *ngIf="campForm.get('name').errors?.minlength" message="O campo nome deve ter no mínimo 5 caracteres"></ac-input-message>
       </div>
