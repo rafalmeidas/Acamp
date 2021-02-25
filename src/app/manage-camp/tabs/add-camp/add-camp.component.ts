@@ -6,6 +6,7 @@ import { debounceTime } from 'rxjs/operators';
 import { Cep } from 'src/app/core/apis/cep/cep';
 import { CepService } from 'src/app/core/apis/cep/cep.service';
 import { CampService } from 'src/app/core/camp/camp.service';
+import { NotAllowOnlyWhiteSpace } from 'src/app/shared/validators/not-allow-only-white-space.validator';
 import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
 
 @Component({
@@ -35,7 +36,9 @@ export class AddCampComponent implements OnInit, OnDestroy {
         '',
         [
           Validators.required,
-          Validators.maxLength(20)
+          Validators.minLength(5),
+          Validators.maxLength(50),
+          NotAllowOnlyWhiteSpace
         ]
       ],
       'initial_date': [
