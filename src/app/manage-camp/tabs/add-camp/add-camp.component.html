@@ -10,7 +10,11 @@
     </div>
     <div class="form-group col-md-4">
       <label for="idIdadeMin">Idade mínima</label>
-      <input formControlName="min_age" type="number" class="form-control" id="idIdadeMin" placeholder="Idade mínima">
+      <input formControlName="min_age" type="number" max="5" class="form-control" id="idIdadeMin" placeholder="Idade mínima">
+      <div *ngIf="!min_age.pristine && min_age.errors">
+        <ac-input-message *ngIf="campForm.get('min_age').errors?.required" message="Obrigatório *"></ac-input-message>
+        <ac-input-message *ngIf="campForm.get('min_age').errors?.max" message="Digite uma idade até de 130 anos"></ac-input-message>
+      </div>
     </div>
   </div>
 
@@ -21,7 +25,7 @@
         <label for="idDataInicio">Ínicio</label>
         <input formControlName="initial_date" type="date" class="form-control" id="idDataInicio">
         <div *ngIf="!initial_date.pristine && initial_date.errors">
-          <ac-input-message *ngIf="campForm.get('initial_date').errors?.required" message="Obrigatório *"></ac-input-message>
+          <ac-input-message *ngIf="campForm.get('initial_date').errors?.required" message="Obrigatório *"></ac-input-message><br>
           <ac-input-message *ngIf="campForm.get('initial_date').errors?.dataMenorQueAtual" message="Data menor que a atual"></ac-input-message>
         </div>
       </div>
@@ -84,6 +88,6 @@
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+  <button disabled ="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary mt-3">Enviar</button>
 
 </form>
