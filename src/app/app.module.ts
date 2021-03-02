@@ -15,6 +15,7 @@ import { ImageModule } from './shared/components/image/image.module';
 import { AcampsModule } from './manage-camp/camps/camps.module';
 import { ContainerFluidModule } from './shared/components/container-fluid/container-fluid.module';
 import { TabsModule } from './manage-camp/tabs/tabs.module';
+import { NgxMaskModule } from "ngx-mask";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,10 @@ import { TabsModule } from './manage-camp/tabs/tabs.module';
     ManageAcampModule,
     ImageModule,
     AcampsModule,
-    TabsModule
+    TabsModule,
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: true //Ao salvar , vai manter a mascara para salvar caso false
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

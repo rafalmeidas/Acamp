@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Cep } from './cep';
-import { map } from 'rxjs/operators'
+import { debounceTime, first, map, switchMap } from 'rxjs/operators'
+import { AbstractControl } from '@angular/forms';
 
 const API_URL = 'https://viacep.com.br/ws/';
 
@@ -29,5 +30,18 @@ export class CepService {
       }
     }
   }
+
+  checkCepTaken() {
+    return (control: AbstractControl) => {
+        return control
+            .valueChanges
+            .pipe(debounceTime(300))
+            .pipe(switchMap(cep => {
+                return this.searchCEP(cep);
+            }))//o retorno do cepService é verdadeiro ou falso true:false
+            .pipe(map(isTaken => isTaken ? null : { cepTaken: true } ))//isTaken é somente o nome dado para o retorno do pipe anterior
+            .pipe(first()); //finaliza o observable e da o retorno
+    }
+}
 
 }
