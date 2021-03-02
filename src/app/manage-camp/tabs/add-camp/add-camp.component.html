@@ -2,17 +2,16 @@
 
   <div class="form-row">
     <div class="form-group col-md-8">
-      <ac-label-required for="idNome" label="Nome"></ac-label-required>
+      <ac-label-required name="idNome" label="Nome"></ac-label-required>
       <input formControlName="name" type="text" class="form-control" id="idNome" placeholder="Nome do acampamento">
       <div *ngIf="!name.pristine && name.errors">
         <ac-input-message *ngIf="campForm.get('name').errors?.required" message="Obrigatório *"></ac-input-message>
-        <ac-input-message *ngIf="campForm.get('name').errors?.onlyWhiteSpace" message="O campo nome não pode começar com espaço nem conter somente espaços em branco"></ac-input-message>
         <ac-input-message *ngIf="campForm.get('name').errors?.maxlength" message="O campo nome deve ter no máximo 50 caracteres"></ac-input-message>
         <ac-input-message *ngIf="campForm.get('name').errors?.minlength" message="O campo nome deve ter no mínimo 5 caracteres"></ac-input-message>
       </div>
     </div>
     <div class="form-group col-md-4">
-      <label for="idIdadeMin">Idade mínima</label>
+      <ac-label-required name="idIdadeMin" label="Idade mínima"></ac-label-required>
       <input formControlName="min_age" type="number" max="5" class="form-control" id="idIdadeMin" placeholder="Idade mínima">
       <div *ngIf="!min_age.pristine && min_age.errors">
         <ac-input-message *ngIf="campForm.get('min_age').errors?.required" message="Obrigatório *"></ac-input-message>
@@ -25,24 +24,32 @@
     <legend class="w-auto">Data do acampamento</legend>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="idDataInicio">Ínicio</label>
+        <ac-label-required name="idDataInicio" label="Ínicio"></ac-label-required>
         <input formControlName="initial_date" type="date" class="form-control" id="idDataInicio">
         <div *ngIf="!initial_date.pristine && initial_date.errors">
-          <ac-input-message *ngIf="campForm.get('initial_date').errors?.required" message="Obrigatório *"></ac-input-message><br>
-          <ac-input-message *ngIf="campForm.get('initial_date').errors?.dataMenorQueAtual" message="Data menor ou igual data a atual"></ac-input-message>
+          <ac-input-message *ngIf="campForm.get('initial_date').errors?.required" message="Obrigatório *"></ac-input-message>
+          <ac-input-message *ngIf="campForm.get('initial_date').errors?.dataMenorQueAtual" message="O campo Ínicio é menor ou igual data a atual"></ac-input-message>
         </div>
       </div>
       <div class="form-group col-md-6">
-        <label for="idDataFim">Fim</label>
+        <ac-label-required name="idDataFim" label="Fim"></ac-label-required>
         <input formControlName="final_date" type="date" class="form-control" id="idDataFim">
+        <div *ngIf="!final_date.pristine && final_date.errors">
+          <ac-input-message *ngIf="campForm.get('final_date').errors?.required" message="Obrigatório *"></ac-input-message>
+          <ac-input-message *ngIf="campForm.get('final_date').errors?.dataMenorQueAtual" message="Data menor ou igual data a atual"></ac-input-message>
+        </div>
       </div>
     </div>
   </fieldset>
 
   <div class="form-row mt-4">
     <div class="form-group col-md-12">
-      <label for="idInfo">Informações</label>
+      <ac-label-required name="idInfo" label="Informações"></ac-label-required>
       <textarea formControlName="info" class="form-control" id="idInfo" rows="3"></textarea>
+      <div *ngIf="!info.pristine && info.errors">
+        <ac-input-message *ngIf="campForm.get('info').errors?.required" message="Obrigatório *"></ac-input-message>
+        <ac-input-message *ngIf="campForm.get('info').errors?.maxlength" message="O campo informações deve ter no máximo 250 caracteres"></ac-input-message>
+      </div>
     </div>
   </div>
 
@@ -50,16 +57,23 @@
     <legend class="w-auto">Endereço</legend>
     <div class="form-row">
       <div class="form-group col-md-4">
-        <label for="idCEP">CEP</label>
-        <input formControlName="cep" type="number" class="form-control" id="idCEP" placeholder="CEP" (blur)="searchCEP()">
+        <ac-label-required name="idCEP" label="CEP"></ac-label-required>
+        <input formControlName="cep" type="text" class="form-control" id="idCEP" (blur)="searchCEP()" mask="00000-000" showMaskTyped="true">
+        <div *ngIf="!cep.pristine && cep.errors">
+          <ac-input-message *ngIf="campForm.get('cep').errors?.required" message="Obrigatório *"></ac-input-message>
+          <!-- <ac-input-message *ngIf="campForm.get('cep').errors?.cepTaken" message="O CEP digitado não existe"></ac-input-message> -->
+        </div>
       </div>
       <div class="form-group col-md-6">
         <label for="idRua">Rua</label>
         <input formControlName="street" type="text" class="form-control" id="idRua" disabled>
       </div>
       <div class="form-group col-md-2">
-        <label for="idNum">Nº</label>
+        <ac-label-required name="idNum" label="Nº"></ac-label-required>
         <input formControlName="number" type="text" class="form-control" id="idNum">
+        <div *ngIf="!number.pristine && number.errors">
+          <ac-input-message *ngIf="campForm.get('number').errors?.required" message="Obrigatório *"></ac-input-message>
+        </div>
       </div>
     </div>
     <div class="form-row">

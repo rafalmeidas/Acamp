@@ -4,6 +4,7 @@ import { TabsComponent } from './tabs.component';
 import { AddCampComponent } from './add-camp/add-camp.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UtilFormModule } from 'src/app/shared/components/util-form/util-form.module';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 
@@ -18,7 +19,8 @@ import { UtilFormModule } from 'src/app/shared/components/util-form/util-form.mo
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    UtilFormModule
+    UtilFormModule,
+    NgxMaskModule.forChild()
   ]
 })
 export class TabsModule { }

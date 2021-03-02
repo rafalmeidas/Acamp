@@ -1,12 +1,10 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 import { Cep } from 'src/app/core/apis/cep/cep';
 import { CepService } from 'src/app/core/apis/cep/cep.service';
 import { CampService } from 'src/app/core/camp/camp.service';
-import { NotAllowOnlyWhiteSpace } from 'src/app/shared/validators/not-allow-only-white-space.validator';
 import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
 
 @Component({
@@ -14,7 +12,7 @@ import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
   templateUrl: './add-camp.component.html',
   styleUrls: ['./add-camp.component.css']
 })
-export class AddCampComponent implements OnInit, OnDestroy {
+export class AddCampComponent implements OnInit {
 
   debounce: Subject<string> = new Subject<string>();
   private cityId: number;
@@ -38,7 +36,6 @@ export class AddCampComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(50),
-          NotAllowOnlyWhiteSpace
         ]
       ],
       'initial_date': [
@@ -53,6 +50,7 @@ export class AddCampComponent implements OnInit, OnDestroy {
         '',
         [
           Validators.required,
+          Validacoes.CurrentDate
         ]
       ],
       'min_age': [
@@ -66,14 +64,16 @@ export class AddCampComponent implements OnInit, OnDestroy {
         '',
         [
           Validators.required,
-          Validators.maxLength(80)
+          Validators.maxLength(250)
         ]
       ],
       'cep': [
         '',
         [
           Validators.required,
-        ]
+        ],
+        this.cepService.checkCepTaken()
+         
       ],
       'street': [
         ''
@@ -104,10 +104,6 @@ export class AddCampComponent implements OnInit, OnDestroy {
       ]
     })
 
-  }
-
-  ngOnDestroy(): void {
-    this.debounce.unsubscribe();
   }
 
   searchCEP() {
@@ -159,7 +155,7 @@ export class AddCampComponent implements OnInit, OnDestroy {
     return this.campForm.get('initial_date');
   }
 
-  get finalDate() {
+  get final_date() {
     return this.campForm.get('final_date');
   }
 
