@@ -12,7 +12,7 @@ import { MenuComponent } from './menu/menu.component';
         MenuComponent,
     ],
     exports: [
-        MenuComponent, 
+        MenuComponent,
     ],
     imports : [
         CommonModule,

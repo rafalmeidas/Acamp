@@ -72,8 +72,6 @@ export class AddCampComponent implements OnInit {
         [
           Validators.required,
         ],
-        this.cepService.checkCepTaken()
-         
       ],
       'street': [
         ''
@@ -99,7 +97,7 @@ export class AddCampComponent implements OnInit {
       'camp_image': [
         '',
         [
-          Validators.required,
+
         ]
       ]
     })
@@ -107,8 +105,11 @@ export class AddCampComponent implements OnInit {
   }
 
   searchCEP() {
-    this.cepService.searchCEP(this.campForm.get('cep').value)
-      .subscribe(dados => this.insertCEP(dados))
+    if ((this.campForm.get('cep').value).length == 8) {
+      this.cepService.searchCEP(this.campForm.get('cep').value)
+        .subscribe(dados => this.insertCEP(dados))
+    }
+
   }
 
   insertCEP(dados: Cep) {
@@ -133,11 +134,17 @@ export class AddCampComponent implements OnInit {
     const neighborhood = this.campForm.get('neighborhood').value;
     const complement = this.campForm.get('complement').value;
     const city_id = this.cityId;
-    console.log(this.camp_image);
+    //console.log(this.camp_image);
 
     this.campService
       .insert(name, initialDate, finalDate, minAge, info, cep, street, number, neighborhood, complement, city_id, this.camp_image)
       .subscribe(() => this.router.navigate(['/camps']));
+    /*
+    * Pensado.....
+    * E se ao cadastrar a primera aba do acampamento ele mover direto para atrações? 
+    * E manter as abas bloqueadas enquanto não tiver um registro do acampameto...?
+    */
+
   }
 
   handleFile(file: File) {

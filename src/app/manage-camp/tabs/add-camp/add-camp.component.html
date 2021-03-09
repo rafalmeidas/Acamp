@@ -66,7 +66,7 @@
       </div>
       <div class="form-group col-md-6">
         <label for="idRua">Rua</label>
-        <input formControlName="street" type="text" class="form-control" id="idRua" disabled>
+        <input formControlName="street" type="text" class="form-control" id="idRua" readonly>
       </div>
       <div class="form-group col-md-2">
         <ac-label-required name="idNum" label="Nº"></ac-label-required>
@@ -79,15 +79,15 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="idBairro">Bairro</label>
-        <input formControlName="neighborhood" type="text" class="form-control" id="idBairro" disabled>
+        <input formControlName="neighborhood" type="text" class="form-control" id="idBairro" readonly>
       </div>
       <div class="form-group col-md-4">
         <label for="idCidade">Cidade</label>
-        <input formControlName="city" type="text" class="form-control" id="idCidade" disabled>
+        <input formControlName="city" type="text" class="form-control" id="idCidade" readonly>
       </div>
       <div class="form-group col-md-2">
         <label for="idEstado">Estado</label>
-        <input formControlName="uf" type="text" class="form-control" id="idEstado" disabled>
+        <input formControlName="uf" type="text" class="form-control" id="idEstado" readonly>
       </div>
     </div>
     <div class="form-row">
@@ -104,7 +104,7 @@
       (change)="handleFile($event.target.files[0])" class="form-control p-1">
     </div>
   </div>
-
-  <button disabled ="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary mt-3">Enviar</button>
+  <button type="submit" class="btn btn-primary mt-3">Próximo</button>
+  <!-- <button disabled ="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary mt-3">Próximo</button> -->
 
 </form>
