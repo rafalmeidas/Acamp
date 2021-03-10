@@ -5,13 +5,15 @@ import { AddCampComponent } from './add-camp/add-camp.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UtilFormModule } from 'src/app/shared/components/util-form/util-form.module';
 import { NgxMaskModule } from 'ngx-mask';
+import { AddAttractionComponent } from './add-attraction/add-attraction.component';
 
 
 
 @NgModule({
   declarations: [
     TabsComponent,
-    AddCampComponent
+    AddCampComponent,
+    AddAttractionComponent
   ],
   exports: [
     TabsComponent

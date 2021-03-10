@@ -81,10 +81,10 @@ export class Validacoes {
   
       if( dateForm > dateCurrent){
         return null;
+      }else {
+        return {dataMenorQueAtual: true};
       }
     }
-
-    return {dataMenorQueAtual: true}
   }
 
 }

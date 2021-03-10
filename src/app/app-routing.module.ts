@@ -12,6 +12,7 @@ import { AddCampComponent } from './manage-camp/tabs/add-camp/add-camp.component
 import { ManageCampComponent } from './manage-camp/manage-camp.component';
 import { MyAcampComponent } from './my-acamp/my-acamp.component';
 import { LoginGuard } from './core/auth/login.guard';
+import { AddAttractionComponent } from './manage-camp/tabs/add-attraction/add-attraction.component';
 
 const routes: Routes = [
     {
@@ -44,17 +45,7 @@ const routes: Routes = [
     {
         path: 'manage-camps/:IdCamp',
         component: ManageCampComponent,
-        canActivate: [AuthGuard],
-        children: [
-            {
-                path: '',
-                component: CampsComponent // Criar componente para adicionar os dados base do acampamento ou editar levando o ID
-            },
-            { 
-                path: 'add-camp',
-                component: AddCampComponent
-            },
-        ]
+        canActivate: [AuthGuard]
     },
     {
         path: 'my-acamps',

@@ -95,10 +95,7 @@ export class AddCampComponent implements OnInit {
         ''
       ],
       'camp_image': [
-        '',
-        [
-
-        ]
+        ''
       ]
     })
 
@@ -138,7 +135,7 @@ export class AddCampComponent implements OnInit {
 
     this.campService
       .insert(name, initialDate, finalDate, minAge, info, cep, street, number, neighborhood, complement, city_id, this.camp_image)
-      .subscribe(() => this.router.navigate(['/camps']));
+      // .subscribe();
     /*
     * Pensado.....
     * E se ao cadastrar a primera aba do acampamento ele mover direto para atrações? 

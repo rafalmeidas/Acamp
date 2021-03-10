@@ -104,7 +104,6 @@
       (change)="handleFile($event.target.files[0])" class="form-control p-1">
     </div>
   </div>
-  <button type="submit" class="btn btn-primary mt-3">Próximo</button>
-  <!-- <button disabled ="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary mt-3">Próximo</button> -->
+  <button [disabled] ="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary mt-3"><a data-toggle="tab" href="#attraction"></a>Próximo</button>
 
 </form>
