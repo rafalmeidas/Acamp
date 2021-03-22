@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { Cep } from 'src/app/core/apis/cep/cep';
 import { CepService } from 'src/app/core/apis/cep/cep.service';
 import { CampService } from 'src/app/core/camp/camp.service';
@@ -14,12 +13,12 @@ import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
 })
 export class AddCampComponent implements OnInit {
 
-  debounce: Subject<string> = new Subject<string>();
   private cityId: number;
-  private camp_image: File;
+  private image: File;
 
   cepInput: string = '';
   campForm: FormGroup;
+  private camp;
 
   constructor(
     private cepService: CepService,
@@ -95,7 +94,10 @@ export class AddCampComponent implements OnInit {
         ''
       ],
       'camp_image': [
-        ''
+        '',
+        [
+          Validators.required,
+        ]
       ]
     })
 
@@ -131,13 +133,17 @@ export class AddCampComponent implements OnInit {
     const neighborhood = this.campForm.get('neighborhood').value;
     const complement = this.campForm.get('complement').value;
     const city_id = this.cityId;
-    //console.log(this.camp_image);
 
+    //Insere o acampamento e manda paa a rota do acampamento/ falta fazer a consulta do acampamento, falta fazer um guard para quando editarem a rota voltar 
+    //para o cadastro de um acampamento do 0
     this.campService
-      .insert(name, initialDate, finalDate, minAge, info, cep, street, number, neighborhood, complement, city_id, this.camp_image)
-      // .subscribe();
+      .insert(name, initialDate, finalDate, minAge, info, cep, street, number, neighborhood, complement, city_id, this.image)
+      .subscribe(res => {
+        this.camp = res;
+        this.router.navigate(['manage-camps/', this.camp.camp.id])
+      });
     /*
-    * Pensado.....
+    * Pensando.....
     * E se ao cadastrar a primera aba do acampamento ele mover direto para atrações? 
     * E manter as abas bloqueadas enquanto não tiver um registro do acampameto...?
     */
@@ -145,7 +151,7 @@ export class AddCampComponent implements OnInit {
   }
 
   handleFile(file: File) {
-    this.camp_image = file;
+    this.image = file;
     //const reader = new FileReader();
     //reader.onload = (event: any) => this.preview = event.target.result; //disponibiliza de forma assincrona o acesso a imagem
     //reader.readAsDataURL(file);
@@ -191,5 +197,8 @@ export class AddCampComponent implements OnInit {
     return this.campForm.get('complement');
   }
 
+  get camp_image() {
+    return this.campForm.get('camp_image');
+  }
 
 }

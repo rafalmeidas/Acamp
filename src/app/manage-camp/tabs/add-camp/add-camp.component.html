@@ -66,7 +66,7 @@
       </div>
       <div class="form-group col-md-6">
         <label for="idRua">Rua</label>
-        <input formControlName="street" type="text" class="form-control" id="idRua" readonly>
+        <input formControlName="street" type="text" class="form-control" id="idRua" disabled>
       </div>
       <div class="form-group col-md-2">
         <ac-label-required name="idNum" label="Nº"></ac-label-required>
@@ -79,15 +79,15 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="idBairro">Bairro</label>
-        <input formControlName="neighborhood" type="text" class="form-control" id="idBairro" readonly>
+        <input formControlName="neighborhood" type="text" class="form-control" id="idBairro" disabled>
       </div>
       <div class="form-group col-md-4">
         <label for="idCidade">Cidade</label>
-        <input formControlName="city" type="text" class="form-control" id="idCidade" readonly>
+        <input formControlName="city" type="text" class="form-control" id="idCidade" disabled>
       </div>
       <div class="form-group col-md-2">
         <label for="idEstado">Estado</label>
-        <input formControlName="uf" type="text" class="form-control" id="idEstado" readonly>
+        <input formControlName="uf" type="text" class="form-control" id="idEstado" disabled>
       </div>
     </div>
     <div class="form-row">
@@ -99,11 +99,14 @@
   </fieldset>
   <div class="form-row mt-4">
     <div class="form-group col-md-12">
-      <label for="idComplemento">Imagem</label>
+      <ac-label-required name="idImagem" label="Imagem"></ac-label-required>
       <input formControlName="camp_image" type="file" accept="image/*"
       (change)="handleFile($event.target.files[0])" class="form-control p-1">
+      <div *ngIf="!camp_image.pristine && camp_image.errors">
+        <ac-input-message *ngIf="campForm.get('camp_image').errors?.required" message="Obrigatório *"></ac-input-message>
+      </div>
     </div>
   </div>
-  <button [disabled] ="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary mt-3"><a data-toggle="tab" href="#attraction"></a>Próximo</button>
+  <button [disabled] ="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary btn-lg btn-block mt-3"><a data-toggle="tab" href="#attraction"></a>Salvar</button>
 
 </form>

@@ -8,11 +8,9 @@ import { SignupComponent } from './home/signup/signup.component';
 import { MainComponent } from './main/main.component';
 import { CampsComponent } from './manage-camp/camps/camps.component';
 import { CampListResolver } from './manage-camp/camps/camp-list.resolve';
-import { AddCampComponent } from './manage-camp/tabs/add-camp/add-camp.component';
 import { ManageCampComponent } from './manage-camp/manage-camp.component';
 import { MyAcampComponent } from './my-acamp/my-acamp.component';
 import { LoginGuard } from './core/auth/login.guard';
-import { AddAttractionComponent } from './manage-camp/tabs/add-attraction/add-attraction.component';
 
 const routes: Routes = [
     {

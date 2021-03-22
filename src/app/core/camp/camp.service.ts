@@ -31,7 +31,6 @@ export class CampService {
         formData.append('complement', complement);
         formData.append('city_id', city_id);
         formData.append('camp_image', camp_image);
-        console.log(formData);
         
         // formData.append('allowComments', allowComments ? 'true' : 'false');
         return this.http.post(API_URL + 'camp', formData);
