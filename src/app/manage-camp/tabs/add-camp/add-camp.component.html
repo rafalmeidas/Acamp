@@ -99,12 +99,14 @@
   </fieldset>
   <div class="form-row mt-4">
     <div class="form-group col-md-12">
-      <label for="idComplemento">Imagem</label>
+      <ac-label-required name="idImagem" label="Imagem"></ac-label-required>
       <input formControlName="camp_image" type="file" accept="image/*"
       (change)="handleFile($event.target.files[0])" class="form-control p-1">
+      <div *ngIf="!camp_image.pristine && camp_image.errors">
+        <ac-input-message *ngIf="campForm.get('camp_image').errors?.required" message="Obrigatório *"></ac-input-message>
+      </div>
     </div>
   </div>
-
-  <button disabled ="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary mt-3">Enviar</button>
+  <button [disabled] ="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary btn-lg btn-block mt-3"><a data-toggle="tab" href="#attraction"></a>Salvar</button>
 
 </form>
