@@ -2,3 +2,7 @@ body {
   overflow-y: scroll;
   overflow-x: auto;
 }
+
+a {
+  cursor: pointer;
+}

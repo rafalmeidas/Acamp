@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Camp } from '../core/camp/camp';
 
 @Component({
   selector: 'app-manage-camp',
@@ -9,7 +11,6 @@ export class ManageCampComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

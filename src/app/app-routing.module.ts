@@ -11,6 +11,7 @@ import { CampListResolver } from './manage-camp/camps/camp-list.resolve';
 import { ManageCampComponent } from './manage-camp/manage-camp.component';
 import { MyAcampComponent } from './my-acamp/my-acamp.component';
 import { LoginGuard } from './core/auth/login.guard';
+import { CampByIdResolver } from './manage-camp/tabs/camp-by-id.resolve';
 
 const routes: Routes = [
     {
@@ -29,7 +30,7 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'acamps', /* Rota para os acampamento para se inscrever */
+        path: 'acamps', /* Rota para os acampamento para se inscrever, mudar nom e trabalhar ela */
         component: MainComponent
     },
     {
@@ -43,23 +44,26 @@ const routes: Routes = [
     {
         path: 'manage-camps/:IdCamp',
         component: ManageCampComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        resolve: {
+            camp: CampByIdResolver
+        }
     },
     {
         path: 'my-acamps',
         component: MyAcampComponent,
         canActivate: [AuthGuard],
     },
-    { 
-        path: '**', 
-        component: NotFoundComponent 
+    {
+        path: '**',
+        component: NotFoundComponent
     }
 ];
 
 @NgModule({
-    imports: [ RouterModule.forRoot(routes) ],
-    exports: [ RouterModule ]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule{
+export class AppRoutingModule {
 
 }

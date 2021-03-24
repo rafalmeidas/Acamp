@@ -17,7 +17,7 @@ export class TabsComponent implements OnInit {
 
   ngOnInit(): void {
     this.idCamp = this.route.snapshot.params.IdCamp;
-    console.log(this.idCamp);
+    //console.log(this.idCamp);
   }
 
 }

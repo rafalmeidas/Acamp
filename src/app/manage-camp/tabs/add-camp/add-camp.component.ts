@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cep } from 'src/app/core/apis/cep/cep';
 import { CepService } from 'src/app/core/apis/cep/cep.service';
+import { Camp } from 'src/app/core/camp/camp';
 import { CampService } from 'src/app/core/camp/camp.service';
+import { addZero } from 'src/app/shared/validators/input-format/date-format';
 import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
 
 @Component({
@@ -18,13 +20,14 @@ export class AddCampComponent implements OnInit {
 
   cepInput: string = '';
   campForm: FormGroup;
-  private camp;
+  //private camp;
 
   constructor(
     private cepService: CepService,
     private campService: CampService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -101,6 +104,30 @@ export class AddCampComponent implements OnInit {
       ]
     })
 
+    if(this.activatedRoute.snapshot.params.IdCamp != 0){
+
+      const camp: Camp = this.activatedRoute.snapshot.data.camp;    
+      
+      this.campForm.patchValue({
+        name: camp.name,
+        initial_date: addZero(camp.initial_date),
+        final_date: addZero(camp.final_date),
+        min_age: camp.min_age,
+        info: camp.info
+      });
+    }
+
+    // "nameampamento da tia anastacia",
+    // "initial_date
+    // "final_date
+    // "min_age
+    // "info
+    // "address_id": 1,
+    // "user_id": 2,
+    // "createdAt": "2021-02-16T18:49:19.566Z",
+    // "updatedAt": "2021-02-16T18:49:19.566Z",
+    // "images"
+
   }
 
   searchCEP() {
@@ -139,8 +166,8 @@ export class AddCampComponent implements OnInit {
     this.campService
       .insert(name, initialDate, finalDate, minAge, info, cep, street, number, neighborhood, complement, city_id, this.image)
       .subscribe(res => {
-        this.camp = res;
-        this.router.navigate(['manage-camps/', this.camp.camp.id])
+        const camp: any = res;
+        this.router.navigate(['manage-camps/', camp.camp.id])
       });
     /*
     * Pensando.....
