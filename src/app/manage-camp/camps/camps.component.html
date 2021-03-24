@@ -1,14 +1,12 @@
 <ac-container-fluid>
-  <a [routerLink]= "['/manage-camps', 0]"><button class="btn btn-primary mb-1">Cadastrar</button></a>
+  <a [routerLink]="['/manage-camps', 0]"><button class="btn btn-primary mb-1">Cadastrar</button></a>
   <div class="bg-white">
-    
+
     <div *ngFor="let cols of rows" class="row no-gutters">
 
       <div acDarkenOnHover *ngFor="let camp of cols" class="col-md-4 no-gutters p-1">
-        <a [routerLink]="['/manage-camps', camp.id]">
-          <ac-camp
-            url="{{ camp.images[0].path }}"
-            title="{{ camp.name }}" info="{{ camp.info }}"></ac-camp>
+        <a (click)="searchAcampById(camp.id)">
+          <ac-camp url="{{ camp.images[0].path }}" title="{{ camp.name }}" info="{{ camp.info }}"></ac-camp>
         </a>
       </div>
     </div>

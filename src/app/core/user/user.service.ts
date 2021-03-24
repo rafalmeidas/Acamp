@@ -39,13 +39,13 @@ export class UserService {
         this.userSubject.next(user); //emitindo os dados após a conversão do token, pode ser acesado no método getUser()
     }
 
-    logout(){
+    logout() {
         this.tokenService.removeToken();
         //Emite um valor para o usuário vazio
         this.userSubject.next(null);
     }
 
-    isLogged(){
+    isLogged() {
         return this.tokenService.hasToken();
     }
 
