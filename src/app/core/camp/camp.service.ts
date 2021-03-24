@@ -19,7 +19,7 @@ export class CampService {
 
     // Retorna todos os acampamentos do usuário logado
     userCamps() {
-        return this.http.get<Camp[]>(API_URL + 'user/' + this.userService.getUserId() + '/camp?include=true');
+        return this.http.get<Camp[]>(API_URL + 'user/' + this.userService.getUserId() + '/camp');
     }
 
     // Retorna o acampamento pelo id, utilizado quando clica-se em um acampamento
@@ -45,15 +45,6 @@ export class CampService {
 
         // formData.append('allowComments', allowComments ? 'true' : 'false');
         return this.http.post<Camp>(API_URL + 'camp', formData);
-    }
-
-    getCamp(idCamp: number){
-        const dados: any = this.getCampById(idCamp)
-        console.log(dados);
-        this.campSubject.next(dados);
-        console.log(this.campSubject);
-        
-        return this.campSubject.asObservable();
     }
 
 }
