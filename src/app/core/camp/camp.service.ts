@@ -18,13 +18,13 @@ export class CampService {
     ) { }
 
     // Retorna todos os acampamentos do usuário logado
-    userCamps() {
-        return this.http.get<Camp[]>(API_URL + 'user/' + this.userService.getUserId() + '/camp');
+    userCamps(page = 1, limit = 9) {
+        return this.http.get<Camp[]>(`${API_URL}user/${this.userService.getUserId()}/camp?page=${page}&limit=${limit}&order=-created_at`);
     }
 
     // Retorna o acampamento pelo id, utilizado quando clica-se em um acampamento
     getCampById(campId: number) {
-        return this.http.get<Camp>(`${API_URL}user/${this.userService.getUserId()}/camp/${campId}`);  
+        return this.http.get<Camp>(`${API_URL}user/${this.userService.getUserId()}/camp/${campId}`);
     }
 
     // Cadastra o acampamento

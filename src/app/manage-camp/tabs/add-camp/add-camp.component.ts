@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cep } from 'src/app/core/apis/cep/cep';
@@ -15,12 +15,13 @@ import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
 })
 export class AddCampComponent implements OnInit {
 
+  
   private cityId: number;
   private image: File;
 
   cepInput: string = '';
   campForm: FormGroup;
-  //private camp;
+  campId: number;
 
   constructor(
     private cepService: CepService,
@@ -104,30 +105,27 @@ export class AddCampComponent implements OnInit {
       ]
     })
 
-    if(this.activatedRoute.snapshot.params.IdCamp != 0){
+    this.campId = this.activatedRoute.snapshot.params.IdCamp;
 
-      const camp: Camp = this.activatedRoute.snapshot.data.camp;    
-      
+    if (this.campId != 0) {
+
+      const camp: Camp = this.activatedRoute.snapshot.data.camp;
+
       this.campForm.patchValue({
         name: camp.name,
         initial_date: addZero(camp.initial_date),
         final_date: addZero(camp.final_date),
         min_age: camp.min_age,
-        info: camp.info
+        info: camp.info,
+        cep: camp.local.cep,
+        street: camp.local.street,
+        number: camp.local.number,
+        neighborhood: camp.local.neighborhood,
+        city: camp.local.city.name,
+        uf: camp.local.city.state.name,
+        complement: camp.local.complement
       });
     }
-
-    // "nameampamento da tia anastacia",
-    // "initial_date
-    // "final_date
-    // "min_age
-    // "info
-    // "address_id": 1,
-    // "user_id": 2,
-    // "createdAt": "2021-02-16T18:49:19.566Z",
-    // "updatedAt": "2021-02-16T18:49:19.566Z",
-    // "images"
-
   }
 
   searchCEP() {

@@ -1,4 +1,4 @@
-export function addZero(date): string{
+export function addZero(date): string {
 
     let newDate = new Date(date);
 

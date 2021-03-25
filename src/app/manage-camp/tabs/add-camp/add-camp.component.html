@@ -107,6 +107,9 @@
       </div>
     </div>
   </div>
-  <button [disabled] ="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary btn-lg btn-block mt-3"><a data-toggle="tab" href="#attraction"></a>Salvar</button>
+  <button [disabled] ="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary btn-lg btn-block mt-3" *ngIf="campId == 0; else update"><a data-toggle="tab" href="#attraction"></a>Salvar</button>
 
+  <ng-template #update>
+    <button [disabled] ="campForm.invalid || campForm.pending" type="submit" class="btn btn-danger btn-lg btn-block mt-3"><a data-toggle="tab" href="#attraction"></a>Atualizar</button>
+  </ng-template>
 </form>
