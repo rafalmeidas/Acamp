@@ -1,7 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
-
-const API_URL = environment.API_URL;
 
 @Component({
   selector: 'ac-card',
@@ -17,7 +14,10 @@ export class CardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.url = `${API_URL}${this.url}`;
+    
   }
+
+
+
 
 }

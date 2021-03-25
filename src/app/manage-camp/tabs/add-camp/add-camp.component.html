@@ -6,16 +6,20 @@
       <input formControlName="name" type="text" class="form-control" id="idNome" placeholder="Nome do acampamento">
       <div *ngIf="!name.pristine && name.errors">
         <ac-input-message *ngIf="campForm.get('name').errors?.required" message="Obrigatório *"></ac-input-message>
-        <ac-input-message *ngIf="campForm.get('name').errors?.maxlength" message="O campo nome deve ter no máximo 50 caracteres"></ac-input-message>
-        <ac-input-message *ngIf="campForm.get('name').errors?.minlength" message="O campo nome deve ter no mínimo 5 caracteres"></ac-input-message>
+        <ac-input-message *ngIf="campForm.get('name').errors?.maxlength"
+          message="O campo nome deve ter no máximo 50 caracteres"></ac-input-message>
+        <ac-input-message *ngIf="campForm.get('name').errors?.minlength"
+          message="O campo nome deve ter no mínimo 5 caracteres"></ac-input-message>
       </div>
     </div>
     <div class="form-group col-md-4">
       <ac-label-required name="idIdadeMin" label="Idade mínima"></ac-label-required>
-      <input formControlName="min_age" type="number" max="5" class="form-control" id="idIdadeMin" placeholder="Idade mínima">
+      <input formControlName="min_age" type="number" max="5" class="form-control" id="idIdadeMin"
+        placeholder="Idade mínima">
       <div *ngIf="!min_age.pristine && min_age.errors">
         <ac-input-message *ngIf="campForm.get('min_age').errors?.required" message="Obrigatório *"></ac-input-message>
-        <ac-input-message *ngIf="campForm.get('min_age').errors?.max" message="Digite uma idade até de 130 anos"></ac-input-message>
+        <ac-input-message *ngIf="campForm.get('min_age').errors?.max" message="Digite uma idade até de 130 anos">
+        </ac-input-message>
       </div>
     </div>
   </div>
@@ -27,16 +31,20 @@
         <ac-label-required name="idDataInicio" label="Ínicio"></ac-label-required>
         <input formControlName="initial_date" type="date" class="form-control" id="idDataInicio">
         <div *ngIf="!initial_date.pristine && initial_date.errors">
-          <ac-input-message *ngIf="campForm.get('initial_date').errors?.required" message="Obrigatório *"></ac-input-message>
-          <ac-input-message *ngIf="campForm.get('initial_date').errors?.dataMenorQueAtual" message="O campo Ínicio é menor ou igual data a atual"></ac-input-message>
+          <ac-input-message *ngIf="campForm.get('initial_date').errors?.required" message="Obrigatório *">
+          </ac-input-message>
+          <ac-input-message *ngIf="campForm.get('initial_date').errors?.dataMenorQueAtual"
+            message="O campo Ínicio é menor ou igual data a atual"></ac-input-message>
         </div>
       </div>
       <div class="form-group col-md-6">
         <ac-label-required name="idDataFim" label="Fim"></ac-label-required>
         <input formControlName="final_date" type="date" class="form-control" id="idDataFim">
         <div *ngIf="!final_date.pristine && final_date.errors">
-          <ac-input-message *ngIf="campForm.get('final_date').errors?.required" message="Obrigatório *"></ac-input-message>
-          <ac-input-message *ngIf="campForm.get('final_date').errors?.dataMenorQueAtual" message="Data menor ou igual data a atual"></ac-input-message>
+          <ac-input-message *ngIf="campForm.get('final_date').errors?.required" message="Obrigatório *">
+          </ac-input-message>
+          <ac-input-message *ngIf="campForm.get('final_date').errors?.dataMenorQueAtual"
+            message="Data menor ou igual data a atual"></ac-input-message>
         </div>
       </div>
     </div>
@@ -48,7 +56,8 @@
       <textarea formControlName="info" class="form-control" id="idInfo" rows="3"></textarea>
       <div *ngIf="!info.pristine && info.errors">
         <ac-input-message *ngIf="campForm.get('info').errors?.required" message="Obrigatório *"></ac-input-message>
-        <ac-input-message *ngIf="campForm.get('info').errors?.maxlength" message="O campo informações deve ter no máximo 250 caracteres"></ac-input-message>
+        <ac-input-message *ngIf="campForm.get('info').errors?.maxlength"
+          message="O campo informações deve ter no máximo 250 caracteres"></ac-input-message>
       </div>
     </div>
   </div>
@@ -58,7 +67,8 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <ac-label-required name="idCEP" label="CEP"></ac-label-required>
-        <input formControlName="cep" type="text" class="form-control" id="idCEP" (blur)="searchCEP()" mask="00000-000" showMaskTyped="true">
+        <input formControlName="cep" type="text" class="form-control" id="idCEP" (blur)="searchCEP()" mask="00000-000"
+          showMaskTyped="true">
         <div *ngIf="!cep.pristine && cep.errors">
           <ac-input-message *ngIf="campForm.get('cep').errors?.required" message="Obrigatório *"></ac-input-message>
           <!-- <ac-input-message *ngIf="campForm.get('cep').errors?.cepTaken" message="O CEP digitado não existe"></ac-input-message> -->
@@ -97,19 +107,38 @@
       </div>
     </div>
   </fieldset>
-  <div class="form-row mt-4">
-    <div class="form-group col-md-12">
-      <ac-label-required name="idImagem" label="Imagem"></ac-label-required>
-      <input formControlName="camp_image" type="file" accept="image/*"
-      (change)="handleFile($event.target.files[0])" class="form-control p-1">
+  <div class="form-row mt-2">
+    <div class="form-group col-md-12" *ngIf="!preview; else previewImage">
+      <ac-label-required name="idImagem" label="Imagem"></ac-label-required><br>
+
+      <!-- fileInput indica o clico no input abaixo id #fileInput que está oculto-->
+      <button type="button" (click)="fileInput.click()" class="btn btn-primary">
+        <i class="fa fa-image fa-4x align-middle"></i>
+      </button>
+
+      <input #fileInput formControlName="camp_image" hidden type="file" accept="image/*"
+        (change)="handleFile($event.target.files[0])" class="form-control p-1" id="idImagem">
       <div *ngIf="!camp_image.pristine && camp_image.errors">
-        <ac-input-message *ngIf="campForm.get('camp_image').errors?.required" message="Obrigatório *"></ac-input-message>
+        <ac-input-message *ngIf="campForm.get('camp_image').errors?.required" message="Obrigatório *">
+        </ac-input-message>
       </div>
     </div>
+    <ng-template #previewImage>
+      <div class="form-group col-md-4 text-center">
+        <a (click)="fileInput.click()">
+          <ac-image-fluid [url]="preview" [description]="title" (click)="fileUpdate.click()"></ac-image-fluid>
+        </a>
+        <input #fileUpdate formControlName="camp_image" hidden type="file" accept="image/*"
+          (change)="handleFile($event.target.files[0])" class="form-control p-1" id="idImagem">
+      </div>
+    </ng-template>
+
   </div>
-  <button [disabled] ="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary btn-lg btn-block mt-3" *ngIf="campId == 0; else update"><a data-toggle="tab" href="#attraction"></a>Salvar</button>
+  <button [disabled]="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary btn-lg btn-block mt-3"
+    *ngIf="campId == 0; else update"><a data-toggle="tab" href="#attraction"></a>Salvar</button>
 
   <ng-template #update>
-    <button [disabled] ="campForm.invalid || campForm.pending" type="submit" class="btn btn-danger btn-lg btn-block mt-3"><a data-toggle="tab" href="#attraction"></a>Atualizar</button>
+    <button [disabled]="campForm.invalid || campForm.pending" type="submit"
+      class="btn btn-danger btn-lg btn-block mt-3"><a data-toggle="tab" href="#attraction"></a>Atualizar</button>
   </ng-template>
 </form>

@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UtilFormModule } from 'src/app/shared/components/util-form/util-form.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { AddAttractionComponent } from './add-attraction/add-attraction.component';
+import { ImageModule } from 'src/app/shared/components/image/image.module';
+import { ImmediateClickModule } from 'src/app/shared/directives/immediate-click/immediate-click.module';
 
 
 
@@ -22,7 +24,9 @@ import { AddAttractionComponent } from './add-attraction/add-attraction.componen
     CommonModule,
     ReactiveFormsModule,
     UtilFormModule,
-    NgxMaskModule.forChild()
+    NgxMaskModule.forChild(),
+    ImageModule,
+    ImmediateClickModule
   ]
 })
 export class TabsModule { }

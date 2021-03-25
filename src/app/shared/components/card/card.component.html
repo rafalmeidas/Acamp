@@ -1,5 +1,7 @@
 <div class="card shadow rounded">
-  <img class="card-img-top" [src]="url" [alt]="title">
+  <!-- <img class="card-img-top" [src]="url" [alt]="title"> -->
+
+  <ac-image-fluid [url]="url" [description]="title"></ac-image-fluid>
   <div class="card-body">
     <h5 class="card-title">{{title}}</h5>
     <p class="card-text">{{info}}</p>
