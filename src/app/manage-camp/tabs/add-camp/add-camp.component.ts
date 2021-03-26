@@ -101,7 +101,13 @@ export class AddCampComponent implements OnInit, OnChanges {
         ''
       ],
       'camp_image': [
-        ''
+        "",
+        [
+          Validators.required
+        ]
+      ],
+      'file': [
+        ""
       ]
     })
 
@@ -123,16 +129,10 @@ export class AddCampComponent implements OnInit, OnChanges {
           neighborhood: this.camp.local.neighborhood,
           city: this.camp.local.city.name,
           uf: this.camp.local.city.state.name,
-          complement: this.camp.local.complement,
-          camp_image: this.file // retirar se funcionar a foto
+          complement: this.camp.local.complement
         });
       }
     }
-
-
-
-
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -155,7 +155,7 @@ export class AddCampComponent implements OnInit, OnChanges {
       street: dados.logradouro,
       neighborhood: dados.bairro,
       city: dados.localidade,
-      uf: dados.uf,
+      uf: dados.uf
     });
     this.cityId = dados.ibge;
   }
@@ -186,15 +186,12 @@ export class AddCampComponent implements OnInit, OnChanges {
     * E se ao cadastrar a primera aba do acampamento ele mover direto para atrações? 
     * E manter as abas bloqueadas enquanto não tiver um registro do acampameto...?
     */
-
   }
 
   handleFile(file: File) {
     this.file = file;
-    //console.log(file.size);
     const reader = new FileReader();
     reader.onload = (event: any) => this.preview = event.target.result; //disponibiliza de forma assincrona o acesso a imagem
-    //console.log(this.preview);
     reader.readAsDataURL(file);
   }
 

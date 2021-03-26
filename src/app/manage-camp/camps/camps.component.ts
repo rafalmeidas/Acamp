@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CampService } from 'src/app/core/camp/camp.service';
 import { CampPaginate } from 'src/app/core/camp/camp-paginate';
+import { updateDate } from 'src/app/shared/validators/input-format/date-format';
 
 @Component({
   selector: 'ac-camps',
@@ -14,7 +15,6 @@ export class CampsComponent implements OnInit, OnChanges {
   camps: CampPaginate;
   rows: any[] = [];
 
-  //camps$: Observable<Camp>;
   private campSubject = new BehaviorSubject<any>(null);
 
   constructor(
@@ -37,13 +37,10 @@ export class CampsComponent implements OnInit, OnChanges {
   groupColomns(camps: CampPaginate) {
 
     const newRows = [];
-
+    
     for (let index = 0; index < camps.camps.length; index += 3) {
       newRows.push(camps.camps.slice(index, index + 3));
     }
-    console.log(camps.camps);
-    
-    console.log(newRows);
     
     return newRows;
   }
@@ -60,4 +57,5 @@ export class CampsComponent implements OnInit, OnChanges {
   get acamp() {
     return this.campSubject.asObservable();
   }
+
 }

@@ -17,4 +17,6 @@ export interface Camp {
     city_id: number;
     images: Image[];
     local: Local;
+    createdAt: string;
+    updatedAt: string;
 }

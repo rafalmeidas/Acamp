@@ -107,7 +107,7 @@
       </div>
     </div>
   </fieldset>
-  <div class="form-row mt-2">
+  <div class="form-row mt-3">
     <div class="form-group col-md-12" *ngIf="!preview; else previewImage">
       <ac-label-required name="idImagem" label="Imagem"></ac-label-required><br>
 
@@ -123,13 +123,15 @@
         </ac-input-message>
       </div>
     </div>
+
     <ng-template #previewImage>
-      <div class="form-group col-md-4 text-center">
-        <a (click)="fileInput.click()">
-          <ac-image-fluid [url]="preview" [description]="title" (click)="fileUpdate.click()"></ac-image-fluid>
-        </a>
-        <input #fileUpdate formControlName="camp_image" hidden type="file" accept="image/*"
-          (change)="handleFile($event.target.files[0])" class="form-control p-1" id="idImagem">
+      <div class="form-group col-md-4">
+        <button class="btn btn-info mb-2" (click)="fileUpdate.click()">
+          Atualizar foto
+        </button>
+        <input #fileUpdate type="button" formControlName="file" hidden type="file" accept="image/*"
+        (change)="handleFile($event.target.files[0])" value="Alterar">
+        <ac-image-fluid [url]="preview" [description]="title" ></ac-image-fluid>
       </div>
     </ng-template>
 

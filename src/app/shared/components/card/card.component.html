@@ -1,9 +1,10 @@
-<div class="card shadow rounded">
-  <!-- <img class="card-img-top" [src]="url" [alt]="title"> -->
-
+<div class="card shadow rounded height-limit">
   <ac-image-fluid [url]="url" [description]="title"></ac-image-fluid>
   <div class="card-body">
-    <h5 class="card-title">{{title}}</h5>
-    <p class="card-text">{{info}}</p>
+    <h5 class="card-title wrap-text">{{title}}</h5>
+    <p class="card-text wrap-text">{{info}}</p>
+  </div>
+  <div class="card-footer text-muted">
+    {{ update }}
   </div>
 </div>
