@@ -1,16 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { UserService } from '../user/user.service';
 import { Camp } from './camp';
+import { CampPaginate } from './camp-paginate';
 
 const API_URL = environment.API_URL
 
 @Injectable({ providedIn: 'root' })
 export class CampService {
-
-    private campSubject = new BehaviorSubject<any>(null);
 
     constructor(
         private http: HttpClient,
@@ -18,13 +17,13 @@ export class CampService {
     ) { }
 
     // Retorna todos os acampamentos do usuário logado
-    userCamps() {
-        return this.http.get<Camp[]>(API_URL + 'user/' + this.userService.getUserId() + '/camp');
+    userCampsPaginate(page = 1, limit = 6) {
+        return this.http.get<CampPaginate>(`${API_URL}user/${this.userService.getUserId()}/camp?page=${page}&limit=${limit}&order=-created_at`).pipe(map(d => d));
     }
 
     // Retorna o acampamento pelo id, utilizado quando clica-se em um acampamento
     getCampById(campId: number) {
-        return this.http.get<Camp>(`${API_URL}user/${this.userService.getUserId()}/camp/${campId}`);  
+        return this.http.get<Camp>(`${API_URL}user/${this.userService.getUserId()}/camp/${campId}`);
     }
 
     // Cadastra o acampamento

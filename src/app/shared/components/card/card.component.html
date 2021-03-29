@@ -1,6 +1,10 @@
-<div class="card border-light text-center">
-  <h4 class="card-header" *ngIf="title">{{title}}</h4>
-  <div class="card-block text-justify">
-    <ng-content></ng-content>
+<div class="card shadow rounded height-limit">
+  <ac-image-fluid [url]="url" [description]="title"></ac-image-fluid>
+  <div class="card-body">
+    <h5 class="card-title wrap-text">{{title}}</h5>
+    <p class="card-text wrap-text">{{info}}</p>
+  </div>
+  <div class="card-footer text-muted font-min-size">
+    {{ update }}
   </div>
 </div>

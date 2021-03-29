@@ -60,8 +60,10 @@ const routes: Routes = [
     }
 ];
 
+
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    // {scrollPositionRestoration: 'enabled'} para que seja possível retornar ao topo da página sempre que alterar a rota
+    imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
     exports: [RouterModule]
 })
 export class AppRoutingModule {

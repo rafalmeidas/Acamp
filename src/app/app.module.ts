@@ -16,10 +16,12 @@ import { AcampsModule } from './manage-camp/camps/camps.module';
 import { ContainerFluidModule } from './shared/components/container-fluid/container-fluid.module';
 import { TabsModule } from './manage-camp/tabs/tabs.module';
 import { NgxMaskModule } from "ngx-mask";
+import { PaginateModule } from './shared/components/paginate/paginate.module';
+import { CampComponent } from './camp/camp.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     AppRoutingModule,
@@ -36,6 +38,7 @@ import { NgxMaskModule } from "ngx-mask";
     ImageModule,
     AcampsModule,
     TabsModule,
+    PaginateModule,
     NgxMaskModule.forRoot({
       dropSpecialCharacters: true //Ao salvar , vai manter a mascara para salvar caso false
     })
