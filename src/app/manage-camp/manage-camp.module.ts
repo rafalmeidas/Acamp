@@ -20,7 +20,7 @@ import { TabsModule } from './tabs/tabs.module';
     ContainerModule,
     ContainerFluidModule,
     AcampsModule,
-    TabsModule
+    TabsModule, 
   ]
 
 })

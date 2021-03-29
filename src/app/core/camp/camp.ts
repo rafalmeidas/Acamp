@@ -1,3 +1,4 @@
+import { Local } from '../address/local';
 import { Image } from './image';
 
 export interface Camp {
@@ -15,4 +16,7 @@ export interface Camp {
     complement: string;
     city_id: number;
     images: Image[];
+    local: Local;
+    createdAt: string;
+    updatedAt: string;
 }

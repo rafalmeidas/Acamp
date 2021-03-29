@@ -1,0 +1,45 @@
+<nav aria-label="..." class="mt-2">
+  <ul class="pagination justify-content-center">
+
+    <li class="page-item disabled" *ngIf="page <= 1; else firstPage">
+      <span class="page-link disabled">Primeiro</span>
+    </li>
+    <ng-template #firstPage>
+      <li class="page-item" (click)="jumpFirstPage()">
+        <a class="page-link">Primeiro</a>
+      </li>
+    </ng-template>
+
+    <li class="page-item disabled" *ngIf="page <= 1; else previous">
+      <span class="page-link disabled">Anterior</span>
+    </li>
+    <ng-template #previous>
+      <li class="page-item" (click)="jumpPreviousPage()">
+        <a class="page-link">Anterior</a>
+      </li>
+    </ng-template>
+
+    <li class="page-item" *ngFor="let i of qtdePages" [ngClass]="{'active': i==page}" aria-current="page"
+      (click)="clickPage(i)">
+      <a class="page-link">{{i}}</a>
+    </li>
+
+    <li class="page-item disabled" *ngIf="page >= qtdePages[this.qtdePages.length -1]; else nextPage">
+      <span class="page-link disabled">Próximo</span>
+    </li>
+    <ng-template #nextPage>
+      <li class="page-item" (click)="jumpNextPage()">
+        <a class="page-link">Próximo</a>
+      </li>
+    </ng-template>
+
+    <li class="page-item disabled" *ngIf="page >= qtdePages[this.qtdePages.length -1]; else lastPage">
+      <span class="page-link disabled">Último</span>
+    </li>
+    <ng-template #lastPage>
+      <li class="page-item" (click)="jumpLastPage()">
+        <a class="page-link">Último</a>
+      </li>
+    </ng-template>
+  </ul>
+</nav>

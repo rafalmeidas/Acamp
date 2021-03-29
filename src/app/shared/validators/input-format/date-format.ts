@@ -1,4 +1,4 @@
-export function addZero(date): string{
+export function addZero(date): string {
 
     let newDate = new Date(date);
 
@@ -13,4 +13,24 @@ function dateSetting(number) {
         return "0" + number;
     else
         return number;
+}
+
+
+export function updateDate(dateForm: any): string {
+
+    var date: any = new Date(dateForm);
+
+    var actualDate: any = new Date();
+    var diffMilissegundos = actualDate - date;
+    var diffSegundos = diffMilissegundos / 1000;
+    var diffMinutos = diffSegundos / 60;
+    var diffHoras = diffMinutos / 60;
+    var diffDias = diffHoras / 24;
+    var diffMeses = diffDias / 30;
+
+    if(diffHoras < 24){ 
+        return (`${Math.round(diffDias)} minuto(s)`);
+    } else {
+        return (`${Math.round(diffDias)} dia(s)`)
+    }
 }
