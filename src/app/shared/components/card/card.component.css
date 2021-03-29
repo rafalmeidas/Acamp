@@ -1,5 +1,5 @@
 .height-limit {
-  height: 400px;
+  height: 380px;
 }
 
 .no-wrap-text {
@@ -15,4 +15,8 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+.font-min-size {
+  font-size: 0.8rem;
 }

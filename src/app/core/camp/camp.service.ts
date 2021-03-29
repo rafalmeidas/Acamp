@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserService } from '../user/user.service';
 import { Camp } from './camp';
@@ -9,8 +8,6 @@ const API_URL = environment.API_URL
 
 @Injectable({ providedIn: 'root' })
 export class CampService {
-
-    private campSubject = new BehaviorSubject<any>(null);
 
     constructor(
         private http: HttpClient,

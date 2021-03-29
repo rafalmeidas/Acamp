@@ -1,9 +1,9 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { CampService } from 'src/app/core/camp/camp.service';
 import { CampPaginate } from 'src/app/core/camp/camp-paginate';
-import { updateDate } from 'src/app/shared/validators/input-format/date-format';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Paginate } from 'src/app/core/paginate/paginate';
 
 @Component({
   selector: 'ac-camps',
@@ -14,8 +14,7 @@ export class CampsComponent implements OnInit, OnChanges {
 
   camps: CampPaginate;
   rows: any[] = [];
-
-  private campSubject = new BehaviorSubject<any>(null);
+  paginate: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -31,31 +30,28 @@ export class CampsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.camps = this.activatedRoute.snapshot.data.camps;
-    this.rows = this.groupColomns(this.camps);
+    this.rows = this.groupColomns(this.camps);  
+    this.paginate = this.camps;
   }
 
   groupColomns(camps: CampPaginate) {
 
     const newRows = [];
-    
+
     for (let index = 0; index < camps.camps.length; index += 3) {
       newRows.push(camps.camps.slice(index, index + 3));
     }
-    
+
     return newRows;
   }
 
   // talvz deixar somente o navigate, consulta pode ser feito no add
   searchAcampById(campId) {
     this.campService.getCampById(campId).subscribe(
-      res => {this.router.navigate(['manage-camps/', campId]); 
-      console.log(res);
+      res => {
+        this.router.navigate(['manage-camps/', campId]);
       }
     );
-  }
-
-  get acamp() {
-    return this.campSubject.asObservable();
   }
 
 }

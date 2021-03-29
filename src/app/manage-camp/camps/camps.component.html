@@ -6,7 +6,7 @@
 
       <div acDarkenOnHover *ngFor="let camp of cols" class="col-md-4 no-gutters p-1">
         <a (click)="searchAcampById(camp.id)">
-          <ac-card url="{{ camp.images[0].path }}" title="{{ camp.name }}" info="{{ camp.info }}"></ac-card>
+          <ac-card url="{{ camp.images[0].path }}" title="{{ camp.name }}" info="{{ camp.info }}" update="{{ camp.updatedAt }}"></ac-card>
         </a>
       </div>
     </div>

@@ -19,7 +19,7 @@ import { DarkenOnHoverModule } from 'src/app/shared/directives/darken-on-hover/d
         CardModule,
         RouterModule,
         ContainerFluidModule,
-        DarkenOnHoverModule,
+        DarkenOnHoverModule
     ]
 })
 export class AcampsModule {

@@ -17,22 +17,20 @@ function dateSetting(number) {
 
 
 export function updateDate(dateForm: any): string {
-    console.log(dateForm);
-    
-    let date: any = new Date(dateForm);
-    console.log(date);
-    
-    let actualDate: any = new Date();
-    let diffMilissegundos = actualDate - date;
-    let diffSegundos = diffMilissegundos / 1000;
-    let diffMinutos = diffSegundos / 60;
-    let diffHoras = diffMinutos / 60;
-    let diffDias = diffHoras / 24;
-    let diffMeses = diffDias / 30;
+
+    var date: any = new Date(dateForm);
+
+    var actualDate: any = new Date();
+    var diffMilissegundos = actualDate - date;
+    var diffSegundos = diffMilissegundos / 1000;
+    var diffMinutos = diffSegundos / 60;
+    var diffHoras = diffMinutos / 60;
+    var diffDias = diffHoras / 24;
+    var diffMeses = diffDias / 30;
 
     if(diffHoras < 24){ 
-        return (`${diffHoras} Horas`);
+        return (`${Math.round(diffDias)} minuto(s)`);
+    } else {
+        return (`${Math.round(diffDias)} dia(s)`)
     }
-    return (`${diffMinutos} minutos`);
-
 }
