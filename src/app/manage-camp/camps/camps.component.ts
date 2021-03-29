@@ -1,19 +1,17 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { CampService } from 'src/app/core/camp/camp.service';
 import { CampPaginate } from 'src/app/core/camp/camp-paginate';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Paginate } from 'src/app/core/paginate/paginate';
 
 @Component({
   selector: 'ac-camps',
   templateUrl: './camps.component.html',
   styleUrls: ['./camps.component.css']
 })
-export class CampsComponent implements OnInit, OnChanges {
+export class CampsComponent implements OnInit {
 
   camps: CampPaginate;
-  rows: any[] = [];
   paginate: any;
 
   constructor(
@@ -22,36 +20,14 @@ export class CampsComponent implements OnInit, OnChanges {
     private router: Router
   ) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.camps) {
-      this.rows = this.groupColomns(this.camps)
-    }
-  }
-
   ngOnInit(): void {
     this.camps = this.activatedRoute.snapshot.data.camps;
-    this.rows = this.groupColomns(this.camps);  
-    this.paginate = this.camps;
+    this.paginate = this.camps.paginate;
   }
 
-  groupColomns(camps: CampPaginate) {
-
-    const newRows = [];
-
-    for (let index = 0; index < camps.camps.length; index += 3) {
-      newRows.push(camps.camps.slice(index, index + 3));
-    }
-
-    return newRows;
-  }
-
-  // talvz deixar somente o navigate, consulta pode ser feito no add
-  searchAcampById(campId) {
-    this.campService.getCampById(campId).subscribe(
-      res => {
-        this.router.navigate(['manage-camps/', campId]);
-      }
-    );
+  //Faz a consulta da página certa
+  receiveActualPage(page) {
+    this.campService.userCampsPaginate(page).subscribe(res => this.camps = res);
   }
 
 }

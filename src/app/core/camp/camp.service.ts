@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { UserService } from '../user/user.service';
 import { Camp } from './camp';
+import { CampPaginate } from './camp-paginate';
 
 const API_URL = environment.API_URL
 
@@ -15,8 +17,8 @@ export class CampService {
     ) { }
 
     // Retorna todos os acampamentos do usuário logado
-    userCamps(page = 1, limit = 9) {
-        return this.http.get<Camp[]>(`${API_URL}user/${this.userService.getUserId()}/camp?page=${page}&limit=${limit}&order=-created_at`);
+    userCampsPaginate(page = 1, limit = 6) {
+        return this.http.get<CampPaginate>(`${API_URL}user/${this.userService.getUserId()}/camp?page=${page}&limit=${limit}&order=-created_at`).pipe(map(d => d));
     }
 
     // Retorna o acampamento pelo id, utilizado quando clica-se em um acampamento
