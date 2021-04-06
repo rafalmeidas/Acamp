@@ -8,6 +8,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { AddAttractionComponent } from './add-attraction/add-attraction.component';
 import { ImageModule } from 'src/app/shared/components/image/image.module';
 import { ImmediateClickModule } from 'src/app/shared/directives/immediate-click/immediate-click.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -26,7 +27,8 @@ import { ImmediateClickModule } from 'src/app/shared/directives/immediate-click/
     UtilFormModule,
     NgxMaskModule.forChild(),
     ImageModule,
-    ImmediateClickModule
+    ImmediateClickModule,
+    RouterModule
   ]
 })
 export class TabsModule { }
