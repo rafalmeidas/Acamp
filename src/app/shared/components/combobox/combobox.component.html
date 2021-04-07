@@ -1,0 +1,4 @@
+<select class="custom-select">
+  <option selected>Escolha um opção</option>
+  <option *ngFor="let dado of lista" [value]="dado.id">{{dado.description}}</option>
+</select>

@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
+import { AttractionService } from 'src/app/core/camp/attraction/attraction.service';
 
 @Component({
   selector: 'ac-add-attraction',
@@ -12,11 +15,15 @@ export class AddAttractionComponent implements OnInit {
 
   private file: File;
 
+  attractionId: number;
   attractionForm: FormGroup;
   preview: string;
+  lista: Array<any> = [];
 
   constructor(
     private formBuilder: FormBuilder,
+    private attractionService: AttractionService,
+    private activeRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +44,7 @@ export class AddAttractionComponent implements OnInit {
       tel1: [
         '',
         [
-          
+
         ]
       ],
       info: [
@@ -52,11 +59,16 @@ export class AddAttractionComponent implements OnInit {
           Validators.required
         ]
       ]
-
-    })
+    });
+    this.attractionService.getCategoryAttractions().subscribe(res => this.lista = res);
+    this.attractionId = this.activeRoute.snapshot.params.IdAttraction;
   }
 
   insert() { }
+
+  getCategoryAttraction(){
+    this.attractionService.getCategoryAttractions();
+  }
 
   handleFile(file: File) {
     this.file = file;

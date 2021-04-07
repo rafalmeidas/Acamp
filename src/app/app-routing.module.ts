@@ -12,6 +12,7 @@ import { ManageCampComponent } from './manage-camp/manage-camp.component';
 import { MyAcampComponent } from './my-acamp/my-acamp.component';
 import { LoginGuard } from './core/auth/login.guard';
 import { CampByIdResolver } from './manage-camp/tabs/camp-by-id.resolve';
+import { AddAttractionComponent } from './manage-camp/tabs/attractions/add-attraction/add-attraction.component';
 
 const routes: Routes = [
     {
@@ -30,7 +31,7 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'acamps', /* Rota para os acampamento para se inscrever, mudar nom e trabalhar ela */
+        path: 'acamps', /* Rota para os acampamento para se inscrever, mudar nome e trabalhar ela */
         component: MainComponent
     },
     {
@@ -40,6 +41,12 @@ const routes: Routes = [
         resolve: {
             camps: CampListResolver
         }
+    },
+    {
+        // path: 'attraction/:IdAttraction',
+        path: 'manage-camps/:IdCamp/attraction/:IdAttraction',
+        component: AddAttractionComponent,
+        canActivate: [ AuthGuard ]
     },
     {
         path: 'manage-camps/:IdCamp',
@@ -63,7 +70,7 @@ const routes: Routes = [
 
 @NgModule({
     // {scrollPositionRestoration: 'enabled'} para que seja possível retornar ao topo da página sempre que alterar a rota
-    imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
+    imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
     exports: [RouterModule]
 })
 export class AppRoutingModule {
