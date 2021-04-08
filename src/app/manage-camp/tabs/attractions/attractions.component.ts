@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'ac-attractions',
@@ -10,12 +9,7 @@ export class AttractionsComponent implements OnInit {
 
   @Input() campId: number;
 
-  constructor(
-    router: Router,
+  constructor() { }
 
-  ) { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import {Location} from '@angular/common';
 
 import { AttractionService } from 'src/app/core/camp/attraction/attraction.service';
 
@@ -23,7 +24,8 @@ export class AddAttractionComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private attractionService: AttractionService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -75,6 +77,10 @@ export class AddAttractionComponent implements OnInit {
     const reader = new FileReader();
     reader.onload = (event: any) => this.preview = event.target.result; //disponibiliza de forma assincrona o acesso a imagem
     reader.readAsDataURL(file);
+  }
+
+  backClicked() {
+    this.location.back();
   }
 
   get description() {

@@ -1,6 +1,6 @@
 <ac-container-fluid>
-  <!-- <button class="btn btn-secondary mb-2 float-right" [routerLink]="['/manage-camps', campId]"><i class="fa fa-arrow-left mr-2"
-    aria-hidden="true"></i>Voltar</button> -->
+  <button class="btn btn-secondary mb-2" (click)="backClicked()"><i class="fa fa-arrow-left mr-2"
+    aria-hidden="true"></i>Voltar</button>
   <form [formGroup]="attractionForm" enctype="multipart/form-data" (submit)="insert()">
 
     <div class="form-row">
@@ -22,7 +22,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <ac-label-required name="idTel" label="Telefone"></ac-label-required>
-        <input formControlName="tel" type="text" class="form-control" id="idTel" placeholder="(41) 90000-0000"
+        <input formControlName="tel" type="tel" class="form-control" id="idTel" placeholder="(41) 90000-0000"
           mask="(00) 0 0000-0000">
         <div *ngIf="!tel.pristine && tel.errors">
           <ac-input-message *ngIf="attractionForm.get('tel').errors?.required" message="Obrigatório *">
@@ -32,7 +32,7 @@
 
       <div class="form-group col-md-6">
         <ac-label-required name="idTel1" label="Telefone Contato"></ac-label-required>
-        <input formControlName="tel" type="text" class="form-control" id="idTel1" placeholder="(41) 90000-0000"
+        <input formControlName="tel" type="tel" class="form-control" id="idTel1" placeholder="(41) 90000-0000"
           mask="(00) 0 0000-0000">
         <div *ngIf="!tel1.pristine && tel1.errors">
           <ac-input-message *ngIf="attractionForm.get('tel1').errors?.required" message="Obrigatório *">
