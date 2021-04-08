@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  acamp:
+    image: acamp
+    build: .
+    ports:
+      - 8081:80
