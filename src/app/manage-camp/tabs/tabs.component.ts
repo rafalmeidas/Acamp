@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'ac-tabs',
@@ -8,16 +9,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TabsComponent implements OnInit {
 
-  idCamp: number;
 
-  constructor( private route: ActivatedRoute ) { }
+  @Input() campId: number;
 
-  // Validar se for recaregado a página fazer uma nova consulta com o id passado de parâmetro, caso não exista mandar para o cadastro com a rota 0, validar se isso 
-  //será feito ná página ou direto no cadastro realizado
-
+  constructor( 
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+    ) { }
+    
   ngOnInit(): void {
-    this.idCamp = this.route.snapshot.params.IdCamp;
-    //console.log(this.idCamp);
+    this.campId = this.activatedRoute.snapshot.params.IdCamp;
+  }
+
+  changeCampId (campId){
+    this.campId = campId;
   }
 
 }

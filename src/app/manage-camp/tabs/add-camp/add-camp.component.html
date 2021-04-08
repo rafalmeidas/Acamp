@@ -130,17 +130,18 @@
           Atualizar foto
         </button>
         <input #fileUpdate type="button" formControlName="file" hidden type="file" accept="image/*"
-        (change)="handleFile($event.target.files[0])" value="Alterar">
-        <ac-image-fluid [url]="preview" [description]="title" ></ac-image-fluid>
+          (change)="handleFile($event.target.files[0])" value="Alterar">
+        <ac-image-fluid [url]="preview" [description]="title"></ac-image-fluid>
       </div>
     </ng-template>
 
   </div>
-  <button [disabled]="campForm.invalid || campForm.pending" type="submit" class="btn btn-primary btn-lg btn-block mt-3"
-    *ngIf="campId == 0; else update"><a data-toggle="tab" href="#attraction"></a>Salvar</button>
+
+  <button [disabled]="campForm.invalid || campForm.pending" *ngIf="campId != 0; else update" type="submit"
+    class="btn btn-danger btn-lg btn-block mt-3">Atualizar</button>
 
   <ng-template #update>
     <button [disabled]="campForm.invalid || campForm.pending" type="submit"
-      class="btn btn-danger btn-lg btn-block mt-3"><a data-toggle="tab" href="#attraction"></a>Atualizar</button>
+      class="btn btn-primary btn-lg btn-block mt-3">Salvar</button>
   </ng-template>
 </form>

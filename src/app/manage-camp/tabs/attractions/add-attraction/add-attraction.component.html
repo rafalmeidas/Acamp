@@ -1,0 +1,95 @@
+<ac-container-fluid>
+  <button class="btn btn-secondary mb-2" (click)="backClicked()"><i class="fa fa-arrow-left mr-2"
+    aria-hidden="true"></i>Voltar</button>
+  <form [formGroup]="attractionForm" enctype="multipart/form-data" (submit)="insert()">
+
+    <div class="form-row">
+      <div class="form-group col-md-8">
+        <ac-label-required name="idDescricao" label="Descrição"></ac-label-required>
+        <input formControlName="description" type="text" class="form-control" id="idDescricao"
+          placeholder="Nome da banda, cantor, teatro, etc.">
+        <div *ngIf="!description.pristine && description.errors">
+          <ac-input-message *ngIf="attractionForm.get('name').errors?.required" message="Obrigatório *">
+          </ac-input-message>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <ac-label-required name="idCat" label="Categoria"></ac-label-required>
+        <ac-combobox [lista]='lista' id="idCat"></ac-combobox>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <ac-label-required name="idTel" label="Telefone"></ac-label-required>
+        <input formControlName="tel" type="tel" class="form-control" id="idTel" placeholder="(41) 90000-0000"
+          mask="(00) 0 0000-0000">
+        <div *ngIf="!tel.pristine && tel.errors">
+          <ac-input-message *ngIf="attractionForm.get('tel').errors?.required" message="Obrigatório *">
+          </ac-input-message>
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <ac-label-required name="idTel1" label="Telefone Contato"></ac-label-required>
+        <input formControlName="tel" type="tel" class="form-control" id="idTel1" placeholder="(41) 90000-0000"
+          mask="(00) 0 0000-0000">
+        <div *ngIf="!tel1.pristine && tel1.errors">
+          <ac-input-message *ngIf="attractionForm.get('tel1').errors?.required" message="Obrigatório *">
+          </ac-input-message>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <ac-label-required name="idInfo" label="Informações"></ac-label-required>
+        <textarea formControlName="info" class="form-control" id="idInfo" rows="3"></textarea>
+        <div *ngIf="!info.pristine && info.errors">
+          <ac-input-message *ngIf="attractionForm.get('info').errors?.required" message="Obrigatório *">
+          </ac-input-message>
+          <ac-input-message *ngIf="attractionForm.get('info').errors?.maxlength"
+            message="O campo informações deve ter no máximo 250 caracteres"></ac-input-message>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12" *ngIf="!preview; else previewImage">
+        <ac-label-required name="idImagem" label="Imagem"></ac-label-required><br>
+
+        <!-- fileInput indica o clico no input abaixo id #fileInput que está oculto-->
+        <button type="button" (click)="fileInput.click()" class="btn btn-primary">
+          <i class="fa fa-image fa-4x align-middle"></i>
+        </button>
+
+        <input #fileInput formControlName="attraction_image" hidden type="file" accept="image/*"
+          (change)="handleFile($event.target.files[0])" class="form-control p-1" id="idImagem">
+        <div *ngIf="!attraction_image.pristine && attraction_image.errors">
+          <ac-input-message *ngIf="attractionForm.get('attraction_image').errors?.required" message="Obrigatório *">
+          </ac-input-message>
+        </div>
+      </div>
+
+      <ng-template #previewImage>
+        <div class="form-group col-md-4">
+          <button class="btn btn-info mb-2" (click)="fileUpdate.click()">
+            Atualizar foto
+          </button>
+          <input #fileUpdate type="button" formControlName="file" hidden type="file" accept="image/*"
+            (change)="handleFile($event.target.files[0])" value="Alterar">
+          <ac-image-fluid [url]="preview" [description]="title"></ac-image-fluid>
+        </div>
+      </ng-template>
+
+    </div>
+
+    <button [disabled]="attractionForm.invalid || attractionForm.pending" *ngIf="attractionId != 0; else update" type="submit"
+      class="btn btn-danger btn-lg btn-block mt-3">Atualizar</button>
+
+    <ng-template #update>
+      <button [disabled]="attractionForm.invalid || attractionForm.pending" type="submit"
+        class="btn btn-primary btn-lg btn-block mt-3">Salvar</button>
+    </ng-template>
+  </form>
+</ac-container-fluid>

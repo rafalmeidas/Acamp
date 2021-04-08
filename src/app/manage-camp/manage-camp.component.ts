@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Camp } from '../core/camp/camp';
+
 
 @Component({
   selector: 'app-manage-camp',
@@ -9,8 +9,14 @@ import { Camp } from '../core/camp/camp';
 })
 export class ManageCampComponent implements OnInit {
 
-  constructor() { }
+  @Input() campId: number;
 
-  ngOnInit(): void { }
+  constructor( 
+    private activatedRoute: ActivatedRoute,
+    ) { }
+
+  ngOnInit(): void {
+    this.campId = this.activatedRoute.snapshot.params.IdCamp;
+  }
 
 }

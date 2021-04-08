@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cep } from 'src/app/core/apis/cep/cep';
@@ -13,15 +13,17 @@ import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
   templateUrl: './add-camp.component.html',
   styleUrls: ['./add-camp.component.css']
 })
-export class AddCampComponent implements OnInit, OnChanges {
+export class AddCampComponent implements OnInit{
 
 
   private cityId: number;
   private file: File;
 
+  @Input() campId: number;
+  @Output() campIdTab: EventEmitter<number> = new EventEmitter();
+
   cepInput: string = '';
   campForm: FormGroup;
-  campId: number;
   preview: string;
   camp: Camp;
   title: string = 'Preview';
@@ -111,35 +113,9 @@ export class AddCampComponent implements OnInit, OnChanges {
       ]
     })
 
-    this.campId = this.activatedRoute.snapshot.params.IdCamp;
-    if (this.campId != 0) {
-      this.camp = this.activatedRoute.snapshot.data.camp;
-      if (this.camp) {
-        this.preview = this.camp.images[0].path;
-
-        this.campForm.patchValue({
-          name: this.camp.name,
-          initial_date: addZero(this.camp.initial_date),
-          final_date: addZero(this.camp.final_date),
-          min_age: this.camp.min_age,
-          info: this.camp.info,
-          cep: this.camp.local.cep,
-          street: this.camp.local.street,
-          number: this.camp.local.number,
-          neighborhood: this.camp.local.neighborhood,
-          city: this.camp.local.city.name,
-          uf: this.camp.local.city.state.name,
-          complement: this.camp.local.complement
-        });
-      }
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.preview.currentValue) {
-      console.log('t');
-
-    }
+    // Consulta acampamento pelo id do mesmo digitado na rota/validar para não aparecer acampamentos de outros usuários
+    // Consulta no banco já é realizada no componente CampComponent
+    this.searchCampRouteParam();
   }
 
   searchCEP() {
@@ -147,7 +123,6 @@ export class AddCampComponent implements OnInit, OnChanges {
       this.cepService.searchCEP(this.campForm.get('cep').value)
         .subscribe(dados => this.insertCEP(dados))
     }
-
   }
 
   insertCEP(dados: Cep) {
@@ -173,12 +148,13 @@ export class AddCampComponent implements OnInit, OnChanges {
     const complement = this.campForm.get('complement').value;
     const city_id = this.cityId;
 
-    //Insere o acampamento e manda paa a rota do acampamento/ falta fazer a consulta do acampamento, falta fazer um guard para quando editarem a rota voltar 
-    //para o cadastro de um acampamento do 0
+    //Insere o acampamento e manda paa a rota do acampamento, falta fazer um guard para quando editarem a rota voltar para o cadastro de um acampamento do 0
     this.campService
       .insert(name, initialDate, finalDate, minAge, info, cep, street, number, neighborhood, complement, city_id, this.file)
       .subscribe(res => {
         const camp: any = res;
+        this.campId = camp.camp.id;
+        this.campIdTab.emit(this.campId);
         this.router.navigate(['manage-camps/', camp.camp.id])
       });
     /*
@@ -193,6 +169,30 @@ export class AddCampComponent implements OnInit, OnChanges {
     const reader = new FileReader();
     reader.onload = (event: any) => this.preview = event.target.result; //disponibiliza de forma assincrona o acesso a imagem
     reader.readAsDataURL(file);
+  }
+
+  searchCampRouteParam() {
+    if (this.campId != 0) {
+      this.camp = this.activatedRoute.snapshot.data.camp;
+      if (this.camp) {
+        this.preview = this.camp.images[0].path;
+
+        this.campForm.patchValue({
+          name: this.camp.name,
+          initial_date: addZero(this.camp.initial_date),
+          final_date: addZero(this.camp.final_date),
+          min_age: this.camp.min_age,
+          info: this.camp.info,
+          cep: this.camp.local.cep,
+          street: this.camp.local.street,
+          number: this.camp.local.number,
+          neighborhood: this.camp.local.neighborhood,
+          city: this.camp.local.city.name,
+          uf: this.camp.local.city.state.name,
+          complement: this.camp.local.complement
+        });
+      }
+    }
   }
 
   get name() {
