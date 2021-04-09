@@ -37,6 +37,7 @@ export class CampComponent implements OnChanges{
     return newRows;
   }
 
+  // Consulta do acampamento clicado
   searchAcampById(campId) {
     this.campService.getCampById(campId).subscribe(
       res => {

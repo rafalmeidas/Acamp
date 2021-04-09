@@ -17,7 +17,6 @@ import { ContainerFluidModule } from './shared/components/container-fluid/contai
 import { TabsModule } from './manage-camp/tabs/tabs.module';
 import { NgxMaskModule } from "ngx-mask";
 import { PaginateModule } from './shared/components/paginate/paginate.module';
-import { CampComponent } from './camp/camp.component';
 
 @NgModule({
   declarations: [
