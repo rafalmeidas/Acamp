@@ -18,7 +18,7 @@ export class CampService {
 
     // Retorna todos os acampamentos do usuário logado
     userCampsPaginate(page = 1, limit = 6) {
-        return this.http.get<CampPaginate>(`${API_URL}user/${this.userService.getUserId()}/camp?page=${page}&limit=${limit}&order=-created_at`).pipe(map(d => d));
+        return this.http.get<CampPaginate>(`${API_URL}user/${this.userService.getUserId()}/camp?page=${page}&limit=${limit}&order=-created_at`).pipe(map(dados => dados));
     }
 
     // Retorna o acampamento pelo id, utilizado quando clica-se em um acampamento

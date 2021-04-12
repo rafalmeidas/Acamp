@@ -43,18 +43,18 @@ const routes: Routes = [
         }
     },
     {
-        // path: 'attraction/:IdAttraction',
-        path: 'manage-camps/:IdCamp/attraction/:IdAttraction',
-        component: AddAttractionComponent,
-        canActivate: [ AuthGuard ]
-    },
-    {
         path: 'manage-camps/:IdCamp',
         component: ManageCampComponent,
         canActivate: [AuthGuard],
         resolve: {
             camp: CampByIdResolver
         }
+    },
+    {
+        // path: 'attraction/:IdAttraction',
+        path: 'manage-camps/:IdCamp/attraction/:IdAttraction',
+        component: AddAttractionComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'my-acamps',
