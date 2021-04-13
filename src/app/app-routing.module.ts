@@ -13,6 +13,7 @@ import { MyAcampComponent } from './my-acamp/my-acamp.component';
 import { LoginGuard } from './core/auth/login.guard';
 import { CampByIdResolver } from './manage-camp/tabs/camp-by-id.resolve';
 import { AddAttractionComponent } from './manage-camp/tabs/attractions/add-attraction/add-attraction.component';
+import { AttractionResolver } from './manage-camp/tabs/attractions/atractions.resolve';
 
 const routes: Routes = [
     {
@@ -43,15 +44,16 @@ const routes: Routes = [
         }
     },
     {
+        // Consulta acampamento clicado, ou troca de parâmetro na rota
         path: 'manage-camps/:IdCamp',
         component: ManageCampComponent,
         canActivate: [AuthGuard],
         resolve: {
-            camp: CampByIdResolver
+            camp: CampByIdResolver,
+            attraction: AttractionResolver
         }
     },
     {
-        // path: 'attraction/:IdAttraction',
         path: 'manage-camps/:IdCamp/attraction/:IdAttraction',
         component: AddAttractionComponent,
         canActivate: [AuthGuard]

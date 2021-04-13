@@ -1,0 +1,11 @@
+<div class="bg-white">
+
+  <div *ngFor="let cols of rows" class="row no-gutters">
+
+    <div acDarkenOnHover *ngFor="let d of cols" class="col-md-4 no-gutters p-1">
+      <a (click)="EmmitId(d.id)">
+        <ac-card [url]="d.images[0].path" [title]="d.name" [info]="d.info" [update]="d.updatedAt"></ac-card>
+      </a>
+    </div>
+  </div>
+</div>

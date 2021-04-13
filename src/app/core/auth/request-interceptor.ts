@@ -14,12 +14,8 @@ export class RequestInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        console.log(req.url);
-
         if (this.tokenService.hasToken()) {
             // Checo se a URL padrão da API tem alguma parte dela na requisição executada
-            console.log(req.url);
-            
             if (!req.url.indexOf(API_URL)) {
                 const token = this.tokenService.getToken();
                 // Obrigátorio clonar a requisição, para que façamos as modificações e reenviemos a requsição, pois não é possível editar diretamente a requisição
@@ -29,7 +25,6 @@ export class RequestInterceptor implements HttpInterceptor {
                     }
                 });
             }
-            //return next.handle(req);
         }
         return next.handle(req);
     }

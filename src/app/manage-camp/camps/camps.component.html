@@ -1,7 +1,7 @@
 <ac-container-fluid>
   <a [routerLink]="['/manage-camps', 0]"><button class="btn btn-primary mb-1">Cadastrar</button></a>
   
-  <ac-camp [camps]="camps.camps"></ac-camp>
+  <ac-card-list (idClicked)="searchAcampById($event)" [dados]="camps.camps"></ac-card-list>
   
   <ac-paginate
     (actualPage) = receiveActualPage($event)

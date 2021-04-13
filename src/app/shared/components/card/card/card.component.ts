@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { updateDate } from '../../validators/input-format/date-format';
+
+import { updateDate } from 'src/app/shared/validators/input-format/date-format';
 
 @Component({
   selector: 'ac-card',

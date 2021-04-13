@@ -30,4 +30,13 @@ export class CampsComponent implements OnInit {
     this.campService.userCampsPaginate(page).subscribe(res => this.camps = res);
   }
 
+  //Consulta
+  searchAcampById(id) {
+    this.campService.getCampById(id).subscribe(
+      res => {
+        this.router.navigate(['manage-camps/', id]);
+      }
+    );
+  }
+
 }

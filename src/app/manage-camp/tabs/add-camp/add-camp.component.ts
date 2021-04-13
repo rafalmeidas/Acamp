@@ -114,7 +114,7 @@ export class AddCampComponent implements OnInit{
     })
 
     // Consulta acampamento pelo id do mesmo digitado na rota/validar para não aparecer acampamentos de outros usuários
-    // Consulta no banco já é realizada no componente CampComponent
+    // Consulta no banco realizada pelo resolve de managecamp no componente CampComponent
     this.searchCampRouteParam();
   }
 
