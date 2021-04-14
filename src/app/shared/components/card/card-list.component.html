@@ -4,7 +4,7 @@
 
     <div acDarkenOnHover *ngFor="let d of cols" class="col-md-4 no-gutters p-1">
       <a (click)="EmmitId(d.id)">
-        <ac-card [url]="d.images[0].path" [title]="d.name" [info]="d.info" [update]="d.updatedAt"></ac-card>
+        <ac-card [url]="d.images[0].path" [title]="d.description" [info]="d.info" [update]="d.updatedAt"></ac-card>
       </a>
     </div>
   </div>

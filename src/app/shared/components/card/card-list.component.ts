@@ -15,6 +15,16 @@ export class CardListComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
 
+    // Crio um novo Array somente com as informações necessárias para o componente
+    this.dados = this.dados.map( a => {
+      return {
+        images: a.images, 
+        description: a.name || a.description, 
+        info: a.info, 
+        updatedAt: a.updatedAt
+      }
+    });
+    
     if (changes.dados) {
       this.rows = this.groupColomns(this.dados);
     }
