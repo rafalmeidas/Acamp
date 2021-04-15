@@ -18,6 +18,7 @@ export class CardListComponent implements OnChanges {
     // Crio um novo Array somente com as informações necessárias para o componente
     this.dados = this.dados.map( a => {
       return {
+        id: a.id,
         images: a.images, 
         description: a.name || a.description, 
         info: a.info, 
@@ -25,6 +26,7 @@ export class CardListComponent implements OnChanges {
       }
     });
     
+    // Gero o array de 3 em 3 objetos para exibir corretamente a linha
     if (changes.dados) {
       this.rows = this.groupColomns(this.dados);
     }
