@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { NewUser } from 'src/app/core/user/new-user';
 import { emailValidator } from 'src/app/shared/validators/email.validator';
+import { FormValidations } from 'src/app/shared/validators/form-validations';
 import { lowerCaseValidator } from 'src/app/shared/validators/lower-case.validator';
 import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
 import { SignUpService } from './signup.service';
@@ -53,7 +54,8 @@ export class SignupComponent implements OnInit{
             'username': [
                 '', 
                 [
-                    Validators.required, 
+                    Validators.required,
+                    Validators.minLength(5),
                     lowerCaseValidator
                 ],
                 this.userNotTakenValidator.checkUserNameTaken()
@@ -70,6 +72,7 @@ export class SignupComponent implements OnInit{
             'confirmPassword': [
                 '', [
                     Validators.required,
+                    FormValidations.equalsTo('password')
                 ],
                 
             ]

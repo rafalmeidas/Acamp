@@ -1,8 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { CampService } from 'src/app/core/camp/camp.service';
 import { CampPaginate } from 'src/app/core/camp/camp-paginate';
+import { UserCampService } from 'src/app/core/camp/user-camp.service';
+import { CampService } from 'src/app/core/camp/camp.service';
 
 @Component({
   selector: 'ac-camps',
@@ -16,27 +17,24 @@ export class CampsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private campService: CampService,
+    private campService: UserCampService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    //this.campService.listByUser(1).subscribe(res => this.camps = res);
     this.camps = this.activatedRoute.snapshot.data.camps;
     this.paginate = this.camps.paginate;
   }
 
   //Faz a consulta da página certa
   receiveActualPage(page) {
-    this.campService.userCampsPaginate(page).subscribe(res => this.camps = res);
+    this.campService.listByUser(page).subscribe(res => this.camps = res);
   }
 
   //Consulta
   searchAcampById(id) {
-    this.campService.getCampById(id).subscribe(
-      res => {
-        this.router.navigate(['manage-camps/', id]);
-      }
-    );
+    this.router.navigate(['manage-camps/', id]);
   }
 
 }

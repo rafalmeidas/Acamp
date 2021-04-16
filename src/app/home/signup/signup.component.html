@@ -69,6 +69,8 @@
         </ac-input-message>
         <ac-input-message *ngIf="registerForm.get('username').valid" fail="true" message="Usuário válido">
         </ac-input-message>
+        <ac-input-message *ngIf="registerForm.get('username').errors?.minlength"
+            message="Deve conter no mínimo 5 caracteres"></ac-input-message>
 
       </div>
 
@@ -92,8 +94,9 @@
         <div *ngIf="!confirmPassword.pristine && confirmPassword.errors">
           <ac-input-message *ngIf="registerForm.get('confirmPassword').errors?.required" message="Obrigatório *">
           </ac-input-message>
+          <ac-input-message *ngIf="registerForm.get('confirmPassword').errors?.equalsTo" message="As senhas não coincidem.">
+          </ac-input-message>
         </div>
-        <ac-input-message *ngIf="confirmPassword == password" message="Senhas não são identicas"></ac-input-message>
       </div>
       <button [disabled]="registerForm.invalid || registerForm.pending" class="btn btn-primary">Cadastrar</button>
     </form>

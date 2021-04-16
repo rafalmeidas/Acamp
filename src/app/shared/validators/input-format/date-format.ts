@@ -28,7 +28,7 @@ export function updateDate(dateForm: any): string {
     var diffDias = diffHoras / 24;
     var diffMeses = diffDias / 30;
 
-    if(diffHoras < 24){ 
+    if (diffHoras < 24) {
         return (`${Math.round(diffDias)} minuto(s)`);
     } else {
         return (`${Math.round(diffDias)} dia(s)`)

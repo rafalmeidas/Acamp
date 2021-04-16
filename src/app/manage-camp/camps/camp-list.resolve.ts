@@ -3,17 +3,17 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { CampService } from '../../core/camp/camp.service';
 import { CampPaginate } from 'src/app/core/camp/camp-paginate';
+import { UserCampService } from 'src/app/core/camp/user-camp.service';
 
 @Injectable({ providedIn: 'root'})
-export class CampListResolver implements Resolve<Observable<CampPaginate>>{
+export class CampListResolver implements Resolve<Observable< CampPaginate>>{
 
     constructor(
-        private service: CampService
+        private service: UserCampService
         ) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return this.service.userCampsPaginate().pipe(map(dados => dados));
+        return this.service.listByUser(1).pipe(map(dados => dados));
     }
 }

@@ -13,7 +13,8 @@ export class RequestInterceptor implements HttpInterceptor {
     constructor(private tokenService: TokenService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+        
+        console.log(req.url);
         if (this.tokenService.hasToken()) {
             // Checo se a URL padrão da API tem alguma parte dela na requisição executada
             if (!req.url.indexOf(API_URL)) {
