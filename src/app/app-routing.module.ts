@@ -49,7 +49,7 @@ const routes: Routes = [
         component: ManageCampComponent,
         canActivate: [AuthGuard],
         resolve: {
-            camp: CampByIdResolver,
+            //camp: CampByIdResolver,
             attraction: AttractionResolver
         }
     },

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Cep } from 'src/app/core/apis/cep/cep';
 import { CepService } from 'src/app/core/apis/cep/cep.service';
 import { Camp } from 'src/app/core/camp/camp';
+import { CampCopiarService } from 'src/app/core/camp/camp-copiar.service';
 import { CampService } from 'src/app/core/camp/camp.service';
 import { addZero } from 'src/app/shared/validators/input-format/date-format';
 import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
@@ -13,7 +14,7 @@ import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
   templateUrl: './add-camp.component.html',
   styleUrls: ['./add-camp.component.css']
 })
-export class AddCampComponent implements OnInit{
+export class AddCampComponent implements OnInit {
 
 
   private cityId: number;
@@ -31,6 +32,7 @@ export class AddCampComponent implements OnInit{
   constructor(
     private cepService: CepService,
     private campService: CampService,
+    private campCopiar: CampCopiarService,
     private formBuilder: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute
@@ -113,8 +115,6 @@ export class AddCampComponent implements OnInit{
       ]
     })
 
-    // Consulta acampamento pelo id do mesmo digitado na rota/validar para não aparecer acampamentos de outros usuários
-    // Consulta no banco realizada pelo resolve de managecamp no componente CampComponent
     this.searchCampRouteParam();
   }
 
@@ -149,7 +149,7 @@ export class AddCampComponent implements OnInit{
     const city_id = this.cityId;
 
     //Insere o acampamento e manda paa a rota do acampamento, falta fazer um guard para quando editarem a rota voltar para o cadastro de um acampamento do 0
-    this.campService
+    this.campCopiar
       .insert(name, initialDate, finalDate, minAge, info, cep, street, number, neighborhood, complement, city_id, this.file)
       .subscribe(res => {
         const camp: any = res;
@@ -173,8 +173,15 @@ export class AddCampComponent implements OnInit{
 
   searchCampRouteParam() {
     if (this.campId != 0) {
-      this.camp = this.activatedRoute.snapshot.data.camp;
+      //console.log(this.activatedRoute.snapshot.params.IdCamp);
+      const id = this.activatedRoute.snapshot.params.IdCamp;
+      this.campService.loadByID(id).subscribe(res => this.camp = res);
+      console.log(this.camp);
+      
+      //this.camp = this.activatedRoute.snapshot.data.camp;
       if (this.camp) {
+        console.log('aqui');
+        
         this.preview = this.camp.images[0].path;
 
         this.campForm.patchValue({

@@ -39,7 +39,6 @@ export class CardListComponent implements OnChanges {
     for (let index = 0; index < arrayAny.length; index += 3) {
       newRows.push(arrayAny.slice(index, index + 3));
     }
-
     return newRows;
   }
 
