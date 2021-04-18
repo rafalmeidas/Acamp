@@ -1,8 +1,8 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CampPaginate } from 'src/app/core/camp/camp-paginate';
-import { UserCampService } from 'src/app/core/camp/user-camp.service';
+import { UserCampPaginateService } from 'src/app/core/camp/user-camp.service';
 import { CampService } from 'src/app/core/camp/camp.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class CampsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private campService: UserCampService,
+    private campService: UserCampPaginateService,
     private router: Router
   ) { }
 

@@ -23,8 +23,9 @@ export class CrudService<T> {
   }
 
   loadByID(id) {
-    return this.http.get<T>(`${this.API_URL}/${id}`).pipe(take(1)).pipe(map(data => data
-    ));
+    return this.http.get<T>(`${this.API_URL}/${id}`)
+      .pipe(take(1))
+      .pipe(map(dados => dados));
   }
 
   private create(record: T) {

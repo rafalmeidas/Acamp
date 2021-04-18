@@ -6,6 +6,8 @@ import { CepService } from 'src/app/core/apis/cep/cep.service';
 import { Camp } from 'src/app/core/camp/camp';
 import { CampCopiarService } from 'src/app/core/camp/camp-copiar.service';
 import { CampService } from 'src/app/core/camp/camp.service';
+import { UserCampService } from 'src/app/core/camp/user-camp.service';
+
 import { addZero } from 'src/app/shared/validators/input-format/date-format';
 import { Validacoes } from 'src/app/shared/validators/validacoes.validator';
 
@@ -26,12 +28,12 @@ export class AddCampComponent implements OnInit {
   cepInput: string = '';
   campForm: FormGroup;
   preview: string;
-  camp: Camp;
+  private campa: Camp;
   title: string = 'Preview';
 
   constructor(
     private cepService: CepService,
-    private campService: CampService,
+    private userCampService: UserCampService,
     private campCopiar: CampCopiarService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -39,6 +41,9 @@ export class AddCampComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.searchCampRouteParam();
+
     this.campForm = this.formBuilder.group({
       'name': [
         '',
@@ -113,9 +118,7 @@ export class AddCampComponent implements OnInit {
       'file': [
         ""
       ]
-    })
-
-    this.searchCampRouteParam();
+    });
   }
 
   searchCEP() {
@@ -136,21 +139,37 @@ export class AddCampComponent implements OnInit {
   }
 
   insert() {
-    const name = this.campForm.get('name').value;
-    const initialDate = this.campForm.get('initial_date').value;
-    const finalDate = this.campForm.get('final_date').value;
-    const minAge = this.campForm.get('min_age').value;
-    const info = this.campForm.get('info').value;
-    const cep = this.campForm.get('cep').value;
-    const street = this.campForm.get('street').value;
-    const number = this.campForm.get('number').value;
-    const neighborhood = this.campForm.get('neighborhood').value;
-    const complement = this.campForm.get('complement').value;
-    const city_id = this.cityId;
 
+    let name = this.campForm.get('name').value;
+    let initial_date = this.campForm.get('initial_date').value;
+    let final_date = this.campForm.get('final_date').value;
+    let min_age = this.campForm.get('min_age').value;
+    let info = this.campForm.get('info').value;
+    let cep = this.campForm.get('cep').value;
+    let street = this.campForm.get('street').value;
+    let number = this.campForm.get('number').value;
+    let neighborhood = this.campForm.get('neighborhood').value;
+    let complement = this.campForm.get('complement').value;
+
+    let formData: Camp;
+    formData.name = name;
+    formData.initial_date = initial_date;
+    formData.final_date = final_date;
+    formData.min_age = min_age;
+    formData.info = info;
+    formData.cep = cep;
+    formData.street = street;
+    formData.number = number;
+    formData.neighborhood = neighborhood;
+    formData.complement = complement;
+    formData.city_id = this.cityId;
+    formData.camp_image = this.file;
+
+    console.log(formData);
+    
     //Insere o acampamento e manda paa a rota do acampamento, falta fazer um guard para quando editarem a rota voltar para o cadastro de um acampamento do 0
-    this.campCopiar
-      .insert(name, initialDate, finalDate, minAge, info, cep, street, number, neighborhood, complement, city_id, this.file)
+    this.userCampService
+      .save(formData)
       .subscribe(res => {
         const camp: any = res;
         this.campId = camp.camp.id;
@@ -172,33 +191,26 @@ export class AddCampComponent implements OnInit {
   }
 
   searchCampRouteParam() {
-    if (this.campId != 0) {
-      //console.log(this.activatedRoute.snapshot.params.IdCamp);
-      const id = this.activatedRoute.snapshot.params.IdCamp;
-      this.campService.loadByID(id).subscribe(res => this.camp = res);
-      console.log(this.camp);
-      
-      //this.camp = this.activatedRoute.snapshot.data.camp;
-      if (this.camp) {
-        console.log('aqui');
-        
-        this.preview = this.camp.images[0].path;
 
+    const id = this.activatedRoute.snapshot.params.IdCamp;
+    if (id != 0) {
+      this.userCampService.loadByID(id).subscribe(res => {
+        this.preview = res.images[0].path;
         this.campForm.patchValue({
-          name: this.camp.name,
-          initial_date: addZero(this.camp.initial_date),
-          final_date: addZero(this.camp.final_date),
-          min_age: this.camp.min_age,
-          info: this.camp.info,
-          cep: this.camp.local.cep,
-          street: this.camp.local.street,
-          number: this.camp.local.number,
-          neighborhood: this.camp.local.neighborhood,
-          city: this.camp.local.city.name,
-          uf: this.camp.local.city.state.name,
-          complement: this.camp.local.complement
+          name: res.name,
+          initial_date: addZero(res.initial_date),
+          final_date: addZero(res.final_date),
+          min_age: res.min_age,
+          info: res.info,
+          cep: res.local.cep,
+          street: res.local.street,
+          number: res.local.number,
+          neighborhood: res.local.neighborhood,
+          city: res.local.city.name,
+          uf: res.local.city.state.name,
+          complement: res.local.complement
         });
-      }
+      });
     }
   }
 

@@ -4,13 +4,13 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CampPaginate } from 'src/app/core/camp/camp-paginate';
-import { UserCampService } from 'src/app/core/camp/user-camp.service';
+import { UserCampPaginateService } from 'src/app/core/camp/user-camp.service';
 
 @Injectable({ providedIn: 'root'})
 export class CampListResolver implements Resolve<Observable< CampPaginate>>{
 
     constructor(
-        private service: UserCampService
+        private service: UserCampPaginateService
         ) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

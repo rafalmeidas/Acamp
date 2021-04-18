@@ -9,7 +9,17 @@ import { CampPaginate } from './camp-paginate';
 const API_URL = environment.API_URL;
 
 @Injectable({ providedIn: 'root' })
-export class UserCampService extends CrudService<CampPaginate>{
+export class UserCampPaginateService extends CrudService<CampPaginate>{
+
+    constructor(
+        http: HttpClient
+    ) {
+        super(http, `${API_URL}user/camp`);
+    }
+}
+
+@Injectable({ providedIn: 'root' })
+export class UserCampService extends CrudService<Camp>{
 
     constructor(
         http: HttpClient

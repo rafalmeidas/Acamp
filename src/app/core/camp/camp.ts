@@ -19,4 +19,7 @@ export interface Camp {
     local: Local;
     createdAt: string;
     updatedAt: string;
+    
+    //
+    camp_image: File;
 }
